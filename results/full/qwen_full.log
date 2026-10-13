@@ -1,0 +1,32 @@
+task folders : /Users/tanmay/kernel_runs/qwen_full
+results file : hermes_results_qwen_full.jsonl
+model        : qwen/qwen3.8-max-0902
+skills       : none
+
+run=0 fp8         hidden=correct 32.1%peak practice=['wrong_output', 'wrong_output', 'correct', 'correct', 'correct', 'correct'] agent=finished 2247s
+run=0 kda         hidden=correct 1.2%peak practice=['runtime_error', 'correct', 'correct'] agent=timeout 2700s
+run=0 paged       hidden=correct 42.4%peak practice=['runtime_error', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 1955s
+run=0 topk        hidden=correct 2.7%peak practice=['runtime_error', 'correct', 'runtime_error', 'correct', 'correct'] agent=timeout 2700s
+run=0 moe         hidden=infra_error         practice=['correct', 'correct', 'correct', 'runtime_error'] agent=timeout 2700s
+run=0 w4a16       hidden=correct 17.7%peak practice=['correct', 'runtime_error', 'correct', 'runtime_error', 'correct', 'wrong_output'] agent=finished 2346s
+
+=== HARD TIER RESULTS ===
+model requested : qwen/qwen3.8-max-0902
+model(s) served : ['qwen/qwen3.8-max-0902']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition', 'None']
+pass            : 5/6   95% CI [0.44, 0.97]
+   fp8    correct(32.1% of peak)
+   kda    correct(1.2% of peak)
+   paged  correct(42.4% of peak)
+   topk   correct(2.7% of peak)
+   moe    infra_error
+   w4a16  correct(17.7% of peak)
+outcomes        : {'correct': 5, 'infra_error': 1}
+GPU seconds (hidden grading only): 150
+--- agent behaviour ---
+avg practice runs used                : 5.0 of 6
+never tested before finishing         : 0/6
+passed practice but FAILED hidden     : 0/6  []
+agent exits                           : {'finished': 3, 'timeout': 3}
+avg agent time                        : 2441s
+total model cost (Hermes estimate)    : $3.583

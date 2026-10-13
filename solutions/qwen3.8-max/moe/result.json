@@ -1,0 +1,50 @@
+{
+  "model": "qwen/qwen3.8-max-0902",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "06_sonic_moe_swiglu",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.1027,
+  "per_shape": [
+    {
+      "gbps": 342.772,
+      "ms": 18.012
+    },
+    {
+      "gbps": 1196.789,
+      "ms": 0.533
+    },
+    {
+      "gbps": 313.819,
+      "ms": 11.975
+    }
+  ],
+  "detail": "HTTPError: HTTP Error 500: Internal Server Error",
+  "torch_math_ops_at_runtime": [
+    "abs",
+    "any",
+    "isnan",
+    "max",
+    "sub"
+  ],
+  "triton_launches": 1037,
+  "agent_exit": "timeout",
+  "agent_minutes": 45.0,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "runtime_error"
+  ],
+  "tokens": {
+    "input_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "api_calls": null
+  },
+  "estimated_cost_usd": null,
+  "source": "hermes_results_qwen_full.jsonl",
+  "note": "hidden grade hit a GPU-service HTTP 500; same solution.py re-graded",
+  "agent_final_message": ""
+}

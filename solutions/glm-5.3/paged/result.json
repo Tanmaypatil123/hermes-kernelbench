@@ -1,0 +1,56 @@
+{
+  "model": "z-ai/glm-5.3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "03_paged_attention",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.3937,
+  "per_shape": [
+    {
+      "gbps": 597.6,
+      "ms": 0.056
+    },
+    {
+      "gbps": 1028.763,
+      "ms": 0.261
+    },
+    {
+      "gbps": 765.482,
+      "ms": 0.088
+    },
+    {
+      "gbps": 866.732,
+      "ms": 0.116
+    },
+    {
+      "gbps": 438.295,
+      "ms": 0.037
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 6.5,
+  "practice_history": [
+    "correct",
+    "infra_error",
+    "runtime_error",
+    "runtime_error",
+    "correct",
+    "correct",
+    "infra_error",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 109831,
+    "output_tokens": 16006,
+    "reasoning_tokens": 12293,
+    "api_calls": 25
+  },
+  "estimated_cost_usd": 0.124636137,
+  "source": "hermes_results_glm53_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done. solution.py contains a custom Triton flash-decoding paged-attention decode kernel (split-K over tokens with online softmax + combine kernel, GQA handled by grouping query heads per KV head, no forbidden APIs) \u2014 verified `status: correct` on all 5 shapes with a best measured peak_fraction of 0.394 (600\u20131033 GB/s across shapes), which is the config restored as the final answer."
+}

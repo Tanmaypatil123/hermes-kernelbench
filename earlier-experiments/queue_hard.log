@@ -1,0 +1,9 @@
+16:53 START glm_hard_alone.log (z-ai/glm-5.3-flash)
+17:07 DONE  glm_hard_alone.log (exit 0)
+17:07 START glm_hard_hermes.log (z-ai/glm-5.3-flash)
+17:20 DONE  glm_hard_hermes.log (exit 0)
+17:20 START kimi_hard_alone.log (moonshotai/kimi-k3)
+17:37 DONE  kimi_hard_alone.log (exit 0)
+17:37 START kimi_hard_hermes.log (moonshotai/kimi-k3)
+18:07 DONE  kimi_hard_hermes.log (exit 0)
+18:07 LANE hard FINISHED

@@ -1,0 +1,54 @@
+{
+  "model": "qwen/qwen3.8-max-0902",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "03_paged_attention",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.4245,
+  "per_shape": [
+    {
+      "gbps": 714.16,
+      "ms": 0.047
+    },
+    {
+      "gbps": 1018.417,
+      "ms": 0.264
+    },
+    {
+      "gbps": 784.78,
+      "ms": 0.086
+    },
+    {
+      "gbps": 884.488,
+      "ms": 0.114
+    },
+    {
+      "gbps": 516.121,
+      "ms": 0.032
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 6,
+  "agent_exit": "finished",
+  "agent_minutes": 32.6,
+  "practice_history": [
+    "runtime_error",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 125206,
+    "output_tokens": 65501,
+    "reasoning_tokens": 53977,
+    "api_calls": 21
+  },
+  "estimated_cost_usd": 1.037754,
+  "source": "hermes_results_qwen_full.jsonl",
+  "note": null,
+  "agent_final_message": "Final state verified: solution.py now matches the run-5 configuration exactly (the best measured: `status: correct`, peak_fraction 0.4286, per-shape 0.40/0.57/0.44/0.49/0.30), with the run-6 experiment (warps=8, evict_first hints, D=64 BLOCK_N change) fully reverted. Lint passes and the practice budget is exhausted (0 runs left).\n\nSummary of the final kernel: a single fused Triton split-KV flash-decoding kernel \u2014 grid (B, num_kv_heads, S) with per-split online-softmax partials in fp32, tensor-core tl.dot with GQA heads zero-padded to M=16, paged gather via block_table with predicated tails (handles non-pow2 seq_len), an atomic-ticket last-CTA LSE merge that writes bf16 output and self-resets the counter, cached workspaces, and CUDA-graph replay keyed on input pointers (with safe fallback).\n\nOne-line summary: solution.py passes check.py on all 5 shapes (status: correct, 3 seeds + stress) with a fused Triton split-KV paged-decode kernel + atomic last-CTA merge + CUDA-graph replay, reaching peak_fraction 0.4286 (~1.07 TB/s on the largest shape) on the RTX PRO 6000 in 6/6 practice runs."
+}

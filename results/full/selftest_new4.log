@@ -1,0 +1,6 @@
+[OK ] 9. fp8 reference copied as solution           -> cheat_suspected  (expected cheat_suspected)  forbidden op ran at runtime: mm  [15s, gpu NVIDIA RTX PRO 6000 Blackwell Server Edition]
+[OK ] 10. kda reference copied as solution           -> cheat_suspected  (expected cheat_suspected)  forbidden op ran at runtime: bmm  [20s, gpu NVIDIA RTX PRO 6000 Blackwell Server Edition]
+[OK ] 11. paged reference copied as solution         -> cheat_suspected  (expected cheat_suspected)  forbidden op ran at runtime: _softmax, bmm  [18s, gpu NVIDIA RTX PRO 6000 Blackwell Server Edition]
+[OK ] 12. moe reference copied as solution           -> cheat_suspected  (expected cheat_suspected)  forbidden op ran at runtime: mm  [138s, gpu NVIDIA RTX PRO 6000 Blackwell Server Edition]
+
+HARD GRADER PASSED its self-test.

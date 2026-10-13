@@ -1,0 +1,50 @@
+{
+  "model": "deepseek/deepseek-v4.1-flash",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "01_fp8_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.2995,
+  "per_shape": [
+    {
+      "gbps": 265.513,
+      "ms": 0.253
+    },
+    {
+      "gbps": 234.55,
+      "ms": 0.287
+    },
+    {
+      "gbps": 718.743,
+      "ms": 0.094
+    },
+    {
+      "gbps": 270.622,
+      "ms": 0.713
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 10854,
+  "agent_exit": "finished",
+  "agent_minutes": 11.4,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 259169,
+    "output_tokens": 115177,
+    "reasoning_tokens": 89480,
+    "api_calls": 39
+  },
+  "estimated_cost_usd": 0.034196231544000005,
+  "source": "hermes_results_deepseek_full.jsonl",
+  "note": null,
+  "agent_final_message": "Out of practice runs. Final state verified: `status: correct` with `peak_fraction: 0.2969` (best run 0.3196; run-to-run variance on the autotuned tiles is \u00b17%).\n\nOne-line summary: solution.py runs a genuine fp8\u00d7fp8 tensor-core MMA in Triton (fp32 accumulate, per-channel scale, bf16 out) with K zero-padding to defeat non-16B row alignment and a cached post-autotune launch path \u2014 check.py PASS on all 4 shapes \u00d7 3 seeds \u00d7 4 stress cases, ~0.30\u20130.32 geomean peak_fraction (543/473/45/673 TFLOPS per shape)."
+}

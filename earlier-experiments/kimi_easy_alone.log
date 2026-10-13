@@ -1,0 +1,27 @@
+seed=0 vector_add   correct 1.00x
+seed=0 rmsnorm      correct 2.47x
+seed=0 softmax      correct 1.89x
+seed=0 swiglu       correct 1.68x
+seed=1 vector_add   correct 1.00x
+seed=1 rmsnorm      correct 2.43x
+seed=1 softmax      correct 1.46x
+seed=1 swiglu       correct 1.68x
+seed=2 vector_add   correct 1.00x
+seed=2 rmsnorm      correct 2.43x
+seed=2 softmax      correct 1.54x
+seed=2 swiglu       correct 1.68x
+
+=== KERNEL EVAL RESULTS ===
+model requested : moonshotai/kimi-k3
+model(s) served : ['moonshotai/kimi-k3']
+gpu             : ['Tesla T4']
+correct (honest)                      : 12/12 = 1.00   95% CI [0.76, 1.00]
+fast_1 (correct & faster than torch)  : 10/12 = 0.83   95% CI [0.55, 0.95]
+correct rate per seed                 : [1.0, 1.0, 1.0]
+geomean speedup (correct only)        : 1.61x
+outcomes                              : {'correct': 12}
+per task (correct / attempts, median speedup):
+   vector_add   3/3   1.00x
+   rmsnorm      3/3   2.43x
+   softmax      3/3   1.54x
+   swiglu       3/3   1.68x

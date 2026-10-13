@@ -1,0 +1,54 @@
+{
+  "model": "deepseek/deepseek-v4.1-flash",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "05_topk_bitonic",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.0217,
+  "per_shape": [
+    {
+      "gbps": 6.615,
+      "ms": 0.079
+    },
+    {
+      "gbps": 55.986,
+      "ms": 0.038
+    },
+    {
+      "gbps": 48.721,
+      "ms": 0.043
+    },
+    {
+      "gbps": 33.122,
+      "ms": 0.023
+    },
+    {
+      "gbps": 152.167,
+      "ms": 0.014
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 0,
+  "agent_exit": "finished",
+  "agent_minutes": 37.9,
+  "practice_history": [
+    "import_error",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 225785,
+    "output_tokens": 257294,
+    "reasoning_tokens": 225118,
+    "api_calls": 62
+  },
+  "estimated_cost_usd": 0.23455051650000003,
+  "source": "hermes_results_deepseek_full.jsonl",
+  "note": null,
+  "agent_final_message": "solution.py is done and verified on the remote RTX PRO 6000.\n\n**Result:** `status: correct` (check.py PASS across all 5 shapes \u00d7 3 seeds \u00d7 numeric-stress cases + the Hypothesis property suite), no forbidden ops, benchmark `peak_fraction 0.0222` (0.5\u20132 MB inputs, 13\u201382 \u00b5s/shape).\n\nWhat it is: two custom CUDA kernels (torch `load_inline`, no CUB/Triton) \u2014 a per-block **bitonic merge tree** over 64-bit `(orderable_float<<32)|index` keys in shared memory, plus a per-row merge kernel; templates on the register-list size `M`, shift/mask-only indexing, in-place single-buffer tree, staged loads, and cached scratch buffers.\n\nMeasured facts worth recording: at these sizes the run is dominated by fixed costs, not the algorithm \u2014 a null kernel launch costs ~3.5 \u00b5s on this box and the input read is ~1 \u00b5s, so two launches alone cap peak_fraction near 0.11; the per-block merge tree is what separates shapes (a trivial k=1 tree runs at ~540 GB/s while an 8-level tree over the same 2 MB runs at ~80 GB/s). I confirmed the `M`-runtime\u2192template change and the division\u2192shift/in-place rewrite each helped (0.0160 \u2192 0.0222), and that a further intra-run register-stage variant was inside run-to-run noise, so I kept the simpler verified tree. Out of practice runs (0 left); `solution.py` is exactly the kernel code that passed, with only dead scratch instrumentation removed."
+}

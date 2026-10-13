@@ -1,0 +1,5 @@
+task folders : /Users/tanmay/kernel_runs/kimi_moe_rerun
+results file : hermes_results_kimi_moe_rerun.jsonl
+model        : moonshotai/kimi-k3
+skills       : none
+

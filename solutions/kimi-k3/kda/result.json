@@ -1,0 +1,50 @@
+{
+  "model": "moonshotai/kimi-k3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "02_kda_cutlass",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.0236,
+  "per_shape": [
+    {
+      "gbps": 164.74,
+      "ms": 0.153
+    },
+    {
+      "gbps": 174.525,
+      "ms": 0.289
+    },
+    {
+      "gbps": 147.754,
+      "ms": 0.341
+    },
+    {
+      "gbps": 86.973,
+      "ms": 0.145
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 27,
+  "agent_exit": "finished",
+  "agent_minutes": 15.9,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "runtime_error",
+    "runtime_error",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 127778,
+    "output_tokens": 53596,
+    "reasoning_tokens": 34749,
+    "api_calls": 28
+  },
+  "estimated_cost_usd": 1.7547931399999999,
+  "source": "hermes_results_kimi_full.jsonl",
+  "note": null,
+  "agent_final_message": "Out of practice runs. Final state is verified: `status: correct` (PASS on all shapes/seeds/stress cases) with peak_fraction improved from 0.0142 to 0.0232.\n\nSummary: solution.py implements KDA chunk-forward as three custom Triton kernels \u2014 parallel intra-chunk precompute (in-register cumsum of g, WY-repr via blocked nilpotent-power inversion in bf16 tensor-core dots, exp2-based decay factors, precomputed Aqk), a software-pipelined sequential inter-chunk state recurrence, and a parallel output kernel \u2014 wrapped in cached buffers + CUDA-graph replay; correctness PASSed on the remote RTX PRO 6000, with per-shape times 0.15\u20130.34 ms (peak_fraction 0.0232, ~1.6x over my first correct version)."
+}

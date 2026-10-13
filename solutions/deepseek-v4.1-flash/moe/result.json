@@ -1,0 +1,53 @@
+{
+  "model": "deepseek/deepseek-v4.1-flash",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "06_sonic_moe_swiglu",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.1048,
+  "per_shape": [
+    {
+      "gbps": 355.56,
+      "ms": 17.364
+    },
+    {
+      "gbps": 1213.112,
+      "ms": 0.526
+    },
+    {
+      "gbps": 316.814,
+      "ms": 11.862
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [
+    "abs",
+    "add",
+    "div",
+    "max",
+    "mul",
+    "sub"
+  ],
+  "triton_launches": 722,
+  "agent_exit": "finished",
+  "agent_minutes": 28.5,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 497494,
+    "output_tokens": 182776,
+    "reasoning_tokens": 126237,
+    "api_calls": 61
+  },
+  "estimated_cost_usd": 0.17983009980000003,
+  "source": "hermes_results_deepseek_moe_rerun.jsonl",
+  "note": "re-run after the practice-tool fix (curl redirect bug broke long checks in the first run)",
+  "agent_final_message": "Done \u2014 final `solution.py` is verified and out of practice runs.\n\n**Result: `status: correct`, `peak_fraction 0.1048`, `RESULT: OK`** (all 6 runs passed correctness; prior best on this problem from earlier sessions was 0.0761).\n\nWhat's in solution.py (Triton only, no vendor GEMM dispatch):\n\n- `_moe_sched_kernel` \u2014 one tiny CTA converts `expert_offsets` into an exclusive prefix sum of m-tile counts, flattening the ragged grouped layout into a dense 1-D grid on-device (no host sync, no per-expert launch).\n- `_moe_up_swiglu_kernel` / `_moe_up_swiglu_tma_kernel` \u2014 one program per (BM\u00d7BN) output tile of one expert: finds its expert via a block-wide prefix scan, streams H in BK steps with **two fp32 accumulators sharing one A tile** (hidden state loaded once, not twice), then a **fused SwiGLU epilogue** out of registers. The TMA twin feeds the same loop through tensor-memory descriptors (unmasked A/W loads, OOB zero-filled).\n- The grid is sized from `ceil(T_perm/BM)+E`, with slack subtracted per-program so out-of-range blocks retire in the ramp-up wave instead of forming an idle tail.\n- Per-shape one-time autotune (L2-flushed timing to match the harness), cross-checking the winner against the standard default config, and accepting the TMA loader **only after it reproduces the plain kernel on both balanced and ragged routing**.\n\nPer-shape: shape0 17.35 ms (0.0951), shape1 0.527 ms (0.1303), shape2 11.84 ms (0.0928). Speedups came from TMA bulk loads (~9% over plain Triton cp.async) and from configuration ranking under cold-L2 conditions."
+}

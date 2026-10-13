@@ -1,0 +1,13 @@
+7b8657ca479c3335f96f07bf1383f24eb924ae5d Sat Oct 10 18:54:38 2026 -0600
+https://github.com/Infatoshi/kernelbench.com benchmarks/hard (MIT, (c) Elliot Arledge)
+problems/ = all six problems from benchmarks/hard/problems-rtxpro6000 (01, 02, 03, 05, 06, 07),
+unchanged; src/ = benchmarks/hard/src/{eval,hardware} only.
+
+Local patch (1 line): src/eval/correctness.py check_correctness() called
+torch.allclose(ref, sol), which scales rtol by |sol|, so the tolerance followed
+the solution's magnitude rather than the reference's. On 07_w4a16_gemm
+(M=256, large_activation stress case) an honest fused Triton kernel that is MORE
+accurate than the reference vs an fp64 ground truth (max err 1.36 vs 2.59) failed
+on 1 of 3,145,728 elements, while the function's own "bad=" diagnostic reported 0.
+Patched to torch.allclose(sol, ref) so tolerance is relative to the reference.
+Found 2026-10-12 by the hard-tier self-test.

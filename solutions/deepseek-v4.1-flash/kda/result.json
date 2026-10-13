@@ -1,0 +1,51 @@
+{
+  "model": "deepseek/deepseek-v4.1-flash",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "02_kda_cutlass",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.0147,
+  "per_shape": [
+    {
+      "gbps": 87.714,
+      "ms": 0.287
+    },
+    {
+      "gbps": 119.325,
+      "ms": 0.422
+    },
+    {
+      "gbps": 98.793,
+      "ms": 0.51
+    },
+    {
+      "gbps": 53.189,
+      "ms": 0.237
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 18,
+  "agent_exit": "finished",
+  "agent_minutes": 28.9,
+  "practice_history": [
+    "runtime_error",
+    "runtime_error",
+    "correct",
+    "wrong_output",
+    "infra_error",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 384144,
+    "output_tokens": 147944,
+    "reasoning_tokens": 109682,
+    "api_calls": 96
+  },
+  "estimated_cost_usd": 0.05074372262399999,
+  "source": "hermes_results_deepseek_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done \u2014 out of practice runs, and the final `solution.py` is the version that just passed (`status: correct`).\n\nOne-line summary: `solution.py` implements KDA chunked forward as a custom Triton pipeline \u2014 kernel A (parallel per-chunk: `T=(I+M)\u207b\u00b9` via 5-step doubling, `w`, `u`, `ke\u1d40`, `qg`, `dec`), kernel B (the only serial pass, over chunks: emits every state `S_i` and `v_new_i`), kernel C (fully parallel: `o = qg\u00b7S + Aqk\u00b7v_new`) \u2014 verified `status: correct` on all four shapes plus the property-stress cases, at 0.24\u20130.51 ms (peak_fraction 0.0147).\n\nNotes on what got it there, and what's left:\n- Two correctness traps found and fixed: `beta[..., None]` row-scales (not column-scales) `M`, and the fp32 triangular-solve dots must stay `input_precision=\"ieee\"` \u2014 tf32 breaks the long-memory stress case where `|M| ~ 1e2` makes `(I+M)\u207b\u00b9` ill-conditioned.\n- Speedups from the naive reference path: 1.9\u20132.0x over my first working version; the remaining bottleneck is the inherently serial inter-chunk state pass (kernel B \u2248 40% of wall time, ~5 \u00b5s/chunk-iteration, latency-bound with only `(V/BV)\u00d7B\u00d7H` blocks to parallelize over). That's where the next win lives \u2014 a blocked 16\u00d716 triangular inverse would also cut kernel A's `ieee` dot cost, which is ~10% of runtime.\n- Kept `solution_v3_good.py.bak` (byte-identical numerics, marginally slower) in the directory; scratch emulators used for pre-GPU validation are in `~/.hermes/cache/scratch/`."
+}

@@ -1,0 +1,54 @@
+{
+  "model": "gpt-6.1-sol",
+  "served_via": "Codex subscription",
+  "harness": "Hermes Agent, no skills",
+  "problem": "03_paged_attention",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.3884,
+  "per_shape": [
+    {
+      "gbps": 587.757,
+      "ms": 0.057
+    },
+    {
+      "gbps": 1028.322,
+      "ms": 0.262
+    },
+    {
+      "gbps": 777.952,
+      "ms": 0.086
+    },
+    {
+      "gbps": 860.227,
+      "ms": 0.117
+    },
+    {
+      "gbps": 412.73,
+      "ms": 0.04
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 4.7,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 30308,
+    "output_tokens": 2839,
+    "reasoning_tokens": 276,
+    "api_calls": 21
+  },
+  "estimated_cost_usd": null,
+  "source": "hermes_results_gpt61_full.jsonl",
+  "note": null,
+  "agent_final_message": "Implemented grouped split-K Triton paged attention in solution.py; all correctness checks passed, with final benchmark latencies of 0.041\u20130.262 ms across all five shapes."
+}

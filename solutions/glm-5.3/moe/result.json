@@ -1,0 +1,48 @@
+{
+  "model": "z-ai/glm-5.3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "06_sonic_moe_swiglu",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.0909,
+  "per_shape": [
+    {
+      "gbps": 299.929,
+      "ms": 20.585
+    },
+    {
+      "gbps": 1085.985,
+      "ms": 0.587
+    },
+    {
+      "gbps": 273.689,
+      "ms": 13.731
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [
+    "stack"
+  ],
+  "triton_launches": 151,
+  "agent_exit": "finished",
+  "agent_minutes": 17.6,
+  "practice_history": [
+    "correct",
+    "runtime_error",
+    "wrong_output",
+    "correct",
+    "runtime_error",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 100469,
+    "output_tokens": 40466,
+    "reasoning_tokens": 22165,
+    "api_calls": 37
+  },
+  "estimated_cost_usd": 0.2994134029999999,
+  "source": "hermes_results_glm53_moe_rerun.jsonl",
+  "note": "re-run after the practice-tool fix (curl redirect bug broke long checks in the first run)",
+  "agent_final_message": "Budget exhausted. Final state: solution.py passes all correctness checks (every shape, 3 seeds, stress cases) with peak_fraction 0.091 \u2014 a single Triton kernel doing the variable-length grouped GEMM with a fully fused SwiGLU epilogue.\n\nSummary: solution.py \u2014 Triton grouped-GEMM + fused SwiGLU MoE up-projection (gate/up weights interleaved into one operand for a single tl.dot with TMEM accumulator, in-kernel expert/tile mapping from expert_offsets via cumsum, on-device autotuned tiles), status: correct, peak_fraction 0.091."
+}

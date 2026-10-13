@@ -1,0 +1,47 @@
+{
+  "model": "qwen/qwen3.8-max-0902",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "02_kda_cutlass",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.012,
+  "per_shape": [
+    {
+      "gbps": 76.832,
+      "ms": 0.328
+    },
+    {
+      "gbps": 91.968,
+      "ms": 0.548
+    },
+    {
+      "gbps": 78.117,
+      "ms": 0.645
+    },
+    {
+      "gbps": 44.869,
+      "ms": 0.281
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 18,
+  "agent_exit": "timeout",
+  "agent_minutes": 45.0,
+  "practice_history": [
+    "runtime_error",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "api_calls": null
+  },
+  "estimated_cost_usd": null,
+  "source": "hermes_results_qwen_full.jsonl",
+  "note": null,
+  "agent_final_message": ""
+}

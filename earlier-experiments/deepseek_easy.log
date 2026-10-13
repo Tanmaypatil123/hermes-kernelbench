@@ -1,0 +1,38 @@
+task folders : /Users/tanmay/kernel_runs/deepseek_easy
+results file : hermes_results_deepseek_easy.jsonl
+model        : deepseek/deepseek-v4.1-flash
+
+run=0 vector_add  hidden=correct 1.00x   practice=['correct', 'correct', 'correct'] agent=finished 92s
+run=0 rmsnorm     hidden=correct 3.49x   practice=['correct', 'correct'] agent=finished 87s
+run=0 softmax     hidden=correct 1.10x   practice=['correct', 'correct', 'correct'] agent=finished 196s
+run=0 swiglu      hidden=correct 1.68x   practice=['correct', 'correct', 'correct'] agent=finished 58s
+run=1 vector_add  hidden=correct 1.06x   practice=['correct', 'correct', 'correct'] agent=finished 76s
+run=1 rmsnorm     hidden=correct 3.55x   practice=['correct', 'correct', 'correct'] agent=finished 151s
+run=1 softmax     hidden=correct 1.05x   practice=['correct', 'correct', 'correct'] agent=finished 128s
+run=1 swiglu      hidden=correct 1.67x   practice=['correct'] agent=finished 34s
+run=2 vector_add  hidden=correct 1.00x   practice=['correct', 'correct', 'correct'] agent=finished 48s
+run=2 rmsnorm     hidden=correct 3.50x   practice=['correct', 'correct', 'correct'] agent=finished 116s
+run=2 softmax     hidden=correct 2.72x   practice=['correct', 'correct', 'correct'] agent=finished 163s
+run=2 swiglu      hidden=correct 1.71x   practice=['correct', 'correct', 'runtime_error'] agent=finished 143s
+
+=== KERNEL EVAL RESULTS ===
+model requested : deepseek/deepseek-v4.1-flash
+model(s) served : ['deepseek/deepseek-v4.1-flash']
+gpu             : ['Tesla T4']
+correct (honest)                      : 12/12 = 1.00   95% CI [0.76, 1.00]
+fast_1 (correct & faster than torch)  : 11/12 = 0.92   95% CI [0.65, 0.99]
+correct rate per seed                 : [1.0, 1.0, 1.0]
+geomean speedup (correct only)        : 1.72x
+outcomes                              : {'correct': 12}
+per task (correct / attempts, median speedup):
+   vector_add   3/3   1.00x
+   rmsnorm      3/3   3.50x
+   softmax      3/3   1.10x
+   swiglu       3/3   1.68x
+--- agent behaviour ---
+avg practice runs used                : 2.8 of 3
+never tested before finishing         : 0/12
+passed practice but FAILED hidden     : 0/12  []
+agent exits                           : {'finished': 12}
+avg agent time                        : 108s
+total model cost (Hermes estimate)    : $0.175

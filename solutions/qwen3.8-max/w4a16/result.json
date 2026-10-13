@@ -1,0 +1,54 @@
+{
+  "model": "qwen/qwen3.8-max-0902",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "07_w4a16_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.1767,
+  "per_shape": [
+    {
+      "gbps": 441.948,
+      "ms": 0.061
+    },
+    {
+      "gbps": 388.698,
+      "ms": 0.071
+    },
+    {
+      "gbps": 166.008,
+      "ms": 0.212
+    },
+    {
+      "gbps": 245.418,
+      "ms": 0.036
+    },
+    {
+      "gbps": 465.346,
+      "ms": 0.068
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 13443,
+  "agent_exit": "finished",
+  "agent_minutes": 39.1,
+  "practice_history": [
+    "correct",
+    "runtime_error",
+    "correct",
+    "runtime_error",
+    "correct",
+    "wrong_output"
+  ],
+  "tokens": {
+    "input_tokens": 112128,
+    "output_tokens": 79865,
+    "reasoning_tokens": 56420,
+    "api_calls": 33
+  },
+  "estimated_cost_usd": 1.2211100000000001,
+  "source": "hermes_results_qwen_full.jsonl",
+  "note": null,
+  "agent_final_message": "Final state verified \u2014 solution.py is byte-identical to the version that passed all 5 shapes remotely (status: correct, peak_fraction 0.1755): a fused Triton W4A16 kernel that views the packed uint8 weights as int32 for 16B-vectorized loads, unpacks 8 nibbles per word in registers, dequantizes per 128-group with bf16 scales/zero-points, accumulates on tensor cores in fp32, and uses SPLIT_K + an fp32-partials reduce kernel to keep all 188 SMs busy on decode shapes, with per-shape autotuning frozen into low-overhead direct launches.\n\nThe last (6th) run tried a redesigned kernel (interleaved full-width dots + exact-integer s\u00b7(dot\u2212z\u00b7\u03a3x) epilogue); it passed shapes 0\u20131 but failed shape 2 on an untestable specialization path, so I reverted to the proven file rather than ship an unverifiable fix.\n\nOne-line summary: Fused Triton int4\u2192bf16 W4A16 GEMM with int32-vectorized nibble unpack, tensor-core fp32 accumulation, autotuned tiles, and split-K for decode shapes \u2014 verified correct on all 5 target shapes on the RTX PRO 6000 at 0.1755 peak fraction (best decode \u2248460 GB/s, prefill \u2248122 TFLOPs)."
+}

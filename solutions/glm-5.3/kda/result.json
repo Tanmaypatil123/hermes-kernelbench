@@ -1,0 +1,50 @@
+{
+  "model": "z-ai/glm-5.3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "02_kda_cutlass",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.0153,
+  "per_shape": [
+    {
+      "gbps": 94.926,
+      "ms": 0.265
+    },
+    {
+      "gbps": 127.73,
+      "ms": 0.395
+    },
+    {
+      "gbps": 100.332,
+      "ms": 0.502
+    },
+    {
+      "gbps": 52.764,
+      "ms": 0.239
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 96,
+  "agent_exit": "finished",
+  "agent_minutes": 18.0,
+  "practice_history": [
+    "wrong_output",
+    "correct",
+    "runtime_error",
+    "runtime_error",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 664176,
+    "output_tokens": 103964,
+    "reasoning_tokens": 96935,
+    "api_calls": 70
+  },
+  "estimated_cost_usd": 1.012977168,
+  "source": "hermes_results_glm53_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done. The final solution.py is in place and verified.\n\nSummary: Implemented Kimi Delta Attention chunk-forward from scratch as two custom Triton kernels for SM120 \u2014 a fully-parallel per-chunk prep kernel (in-chunk g cumsum, decay-scaled k\u00b7k\u1d40, (I+M)\u207b\u00b9 via Neumann doubling, w/u/Aqk/z/t2/kg2) plus a sequential inter-chunk kernel with the recurrent state tile resident in registers (w/z stacked into one dot, V-tiling for parallelism, padded-kg2 state update), with a known-good fallback kernel and a cross-call buffer cache. Validated the math end-to-end in numpy against reference.py before porting; remote runs show `status: correct` on all 4 shapes \u00d7 3 seeds \u00d7 scale-stress \u00d7 property-stress (the structured long-memory case required fp32-ieee inversion dots \u2014 tf32 breaks the alternating series' cancellation). Best measured config: peak_fraction 0.0155 (prep \u2248114\u00b5s, seq \u224852\u00b5s at B=2,T=1024,H=8); final file reverts the one regression found (prep num_warps=16) back to the proven run-5 setup plus the validated buffer cache. Practice runs are exhausted; solution.py compiles clean with no forbidden imports/strings."
+}

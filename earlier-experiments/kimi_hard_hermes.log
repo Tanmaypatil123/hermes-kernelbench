@@ -1,0 +1,23 @@
+task folders : /Users/tanmay/kernel_runs/kimi_hard
+results file : hermes_results_kimi_hard.jsonl
+model        : moonshotai/kimi-k3
+
+run=0 topk        hidden=correct 1.6%peak practice=['correct'] agent=timeout 1200s
+run=0 w4a16       hidden=no_custom_kernel         practice=['correct', 'correct', 'correct', 'wrong_output'] agent=finished 490s
+
+=== HARD TIER RESULTS ===
+model requested : moonshotai/kimi-k3
+model(s) served : ['moonshotai/kimi-k3']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition']
+pass            : 1/2   95% CI [0.09, 0.91]
+   topk   correct(1.6% of peak)
+   w4a16  no_custom_kernel
+outcomes        : {'correct': 1, 'no_custom_kernel': 1}
+GPU seconds (hidden grading only): 104
+--- agent behaviour ---
+avg practice runs used                : 2.5 of 4
+never tested before finishing         : 0/2
+passed practice but FAILED hidden     : 0/2  []
+agent exits                           : {'timeout': 1, 'finished': 1}
+avg agent time                        : 845s
+total model cost (Hermes estimate)    : $0.504

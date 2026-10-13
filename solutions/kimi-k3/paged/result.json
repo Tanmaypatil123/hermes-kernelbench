@@ -1,0 +1,54 @@
+{
+  "model": "moonshotai/kimi-k3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "03_paged_attention",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.2575,
+  "per_shape": [
+    {
+      "gbps": 358.356,
+      "ms": 0.094
+    },
+    {
+      "gbps": 851.225,
+      "ms": 0.316
+    },
+    {
+      "gbps": 402.499,
+      "ms": 0.167
+    },
+    {
+      "gbps": 623.701,
+      "ms": 0.162
+    },
+    {
+      "gbps": 279.197,
+      "ms": 0.059
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 14.9,
+  "practice_history": [
+    "wrong_output",
+    "correct",
+    "wrong_output",
+    "wrong_output",
+    "wrong_output",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 144857,
+    "output_tokens": 30500,
+    "reasoning_tokens": 14495,
+    "api_calls": 23
+  },
+  "estimated_cost_usd": 1.0553280100000002,
+  "source": "hermes_results_kimi_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done \u2014 solution.py is a custom Triton split-KV paged-attention decode kernel (stage 1: online-softmax partials per (batch\u00b7head, seq-split) in full fp32; stage 2: cross-split combine), no forbidden ops. Final remote run: check.py PASS on all 5 shapes (status: correct), benchmark peak_fraction 0.2579 (per-shape 0.20 / 0.47 / 0.22 / 0.35 / 0.16 of the 1.8 TB/s RTX PRO 6000 roofline). Attempts to cut KV traffic via GQA-sharing with tl.dot and a per-head scatter variant both tripped the large-magnitude stress case, so I shipped the proven fp32 version with the last test runs exhausted."
+}

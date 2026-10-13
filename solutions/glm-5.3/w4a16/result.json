@@ -1,0 +1,54 @@
+{
+  "model": "z-ai/glm-5.3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "07_w4a16_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.1567,
+  "per_shape": [
+    {
+      "gbps": 404.647,
+      "ms": 0.066
+    },
+    {
+      "gbps": 344.858,
+      "ms": 0.081
+    },
+    {
+      "gbps": 143.194,
+      "ms": 0.245
+    },
+    {
+      "gbps": 212.521,
+      "ms": 0.042
+    },
+    {
+      "gbps": 420.971,
+      "ms": 0.076
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 5.4,
+  "practice_history": [
+    "correct",
+    "correct",
+    "infra_error",
+    "runtime_error",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 90162,
+    "output_tokens": 21516,
+    "reasoning_tokens": 12145,
+    "api_calls": 37
+  },
+  "estimated_cost_usd": 0.18676164600000003,
+  "source": "hermes_results_glm53_full.jsonl",
+  "note": null,
+  "agent_final_message": "Verified final result: `status: correct`, peak_fraction 0.1595 (up from 0.1401 baseline) with the fused-reduction change improving every decode shape (M=1 N=12288: 0.064 ms / 416 GB/s; M=1 N=4096: 0.041 ms; M=16: 0.074 ms / 430 GB/s).\n\nSummary: W4A16 GEMM in solution.py as a Triton kernel fusing int4 unpack + per-group dequant + `tl.dot` GEMM (even/odd nibble halves against strided x views, fp32 accumulation, tensor-core tiles, split-K with a one-launch fused reduce/cast), plus a one-time tile-contiguous weight repack and cached output buffers; passes check.py on all shapes and seeds. I'm stopping here with one practice run unspent \u2014 the remaining headroom (M=256 at 0.08 peak fraction) would need a compute-side retune I couldn't A/B safely with one run left."
+}

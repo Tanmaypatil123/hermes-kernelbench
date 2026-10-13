@@ -1,0 +1,38 @@
+task folders : /Users/tanmay/kernel_runs/glm_easy
+results file : hermes_results_glm_easy.jsonl
+model        : z-ai/glm-5.3-flash
+
+run=0 vector_add  hidden=correct 1.00x   practice=['correct'] agent=finished 23s
+run=0 rmsnorm     hidden=correct 3.49x   practice=['correct', 'correct', 'correct'] agent=finished 45s
+run=0 softmax     hidden=correct 2.75x   practice=['correct', 'correct'] agent=finished 37s
+run=0 swiglu      hidden=correct 1.68x   practice=['correct', 'correct'] agent=finished 30s
+run=1 vector_add  hidden=correct 1.00x   practice=['correct', 'correct'] agent=finished 48s
+run=1 rmsnorm     hidden=correct 3.70x   practice=['correct', 'correct'] agent=finished 38s
+run=1 softmax     hidden=correct 2.72x   practice=['correct', 'correct'] agent=finished 26s
+run=1 swiglu      hidden=correct 1.68x   practice=['correct', 'correct'] agent=finished 32s
+run=2 vector_add  hidden=correct 1.00x   practice=['correct'] agent=finished 19s
+run=2 rmsnorm     hidden=correct 3.49x   practice=['correct'] agent=finished 21s
+run=2 softmax     hidden=correct 1.90x   practice=['wrong_output', 'correct', 'wrong_output'] agent=finished 63s
+run=2 swiglu      hidden=correct 1.67x   practice=['correct', 'correct'] agent=finished 27s
+
+=== KERNEL EVAL RESULTS ===
+model requested : z-ai/glm-5.3-flash
+model(s) served : ['z-ai/glm-5.3-flash']
+gpu             : ['Tesla T4']
+correct (honest)                      : 12/12 = 1.00   95% CI [0.76, 1.00]
+fast_1 (correct & faster than torch)  : 10/12 = 0.83   95% CI [0.55, 0.95]
+correct rate per seed                 : [1.0, 1.0, 1.0]
+geomean speedup (correct only)        : 1.95x
+outcomes                              : {'correct': 12}
+per task (correct / attempts, median speedup):
+   vector_add   3/3   1.00x
+   rmsnorm      3/3   3.49x
+   softmax      3/3   2.72x
+   swiglu       3/3   1.68x
+--- agent behaviour ---
+avg practice runs used                : 1.9 of 3
+never tested before finishing         : 0/12
+passed practice but FAILED hidden     : 0/12  []
+agent exits                           : {'finished': 12}
+avg agent time                        : 34s
+total model cost (Hermes estimate)    : $0.044

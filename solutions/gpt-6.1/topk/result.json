@@ -1,0 +1,54 @@
+{
+  "model": "gpt-6.1-sol",
+  "served_via": "Codex subscription",
+  "harness": "Hermes Agent, no skills",
+  "problem": "05_topk_bitonic",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.0257,
+  "per_shape": [
+    {
+      "gbps": 12.809,
+      "ms": 0.041
+    },
+    {
+      "gbps": 73.194,
+      "ms": 0.029
+    },
+    {
+      "gbps": 72.88,
+      "ms": 0.029
+    },
+    {
+      "gbps": 26.833,
+      "ms": 0.029
+    },
+    {
+      "gbps": 114.457,
+      "ms": 0.018
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 4.2,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 45357,
+    "output_tokens": 2471,
+    "reasoning_tokens": 562,
+    "api_calls": 19
+  },
+  "estimated_cost_usd": null,
+  "source": "hermes_results_gpt61_full.jsonl",
+  "note": null,
+  "agent_final_message": "Implemented solution.py with custom Triton kernels; all checks passed (status: correct), final latencies were 17\u201340 \u00b5s, and all 6 practice runs are exhausted."
+}

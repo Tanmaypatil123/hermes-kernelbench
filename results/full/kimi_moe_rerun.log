@@ -1,0 +1,22 @@
+task folders : /Users/tanmay/kernel_runs/kimi_moe_rerun
+results file : hermes_results_kimi_moe_rerun.jsonl
+model        : moonshotai/kimi-k3
+skills       : none
+
+run=0 moe         hidden=correct 9.0%peak practice=['correct', 'wrong_output', 'correct', 'correct', 'correct', 'runtime_error'] agent=finished 1395s
+
+=== HARD TIER RESULTS ===
+model requested : moonshotai/kimi-k3
+model(s) served : ['moonshotai/kimi-k3']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition']
+pass            : 1/1   95% CI [0.21, 1.00]
+   moe    correct(9.0% of peak)
+outcomes        : {'correct': 1}
+GPU seconds (hidden grading only): 256
+--- agent behaviour ---
+avg practice runs used                : 6.0 of 6
+never tested before finishing         : 0/1
+passed practice but FAILED hidden     : 0/1  []
+agent exits                           : {'finished': 1}
+avg agent time                        : 1395s
+total model cost (Hermes estimate)    : $0.846

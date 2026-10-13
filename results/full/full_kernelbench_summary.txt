@@ -1,0 +1,41 @@
+model                      fp8       kda     paged      topk       moe     w4a16   pass  geomean*   cost$    time
+DeepSeek V4.1 Flash      29.9%      1.5%     45.1%      2.2%     10.5%     19.8%    6/6      9.8%    0.87    160m
+Qwen 3.8 Max             32.1%     1.2%T     42.4%     2.7%T    10.3%T     17.7%    6/6      9.6%    3.58    244m
+Kimi K3                  28.1%      2.4%     25.8%      2.0%      9.0%     23.7%    6/6      9.5%    5.70     80m
+GPT 6.1                  30.3%      1.4%     38.8%      2.6%     10.2%     15.5%    6/6      9.4%    0.00     36m
+GLM 5.3                   FAIL      1.5%     39.4%      1.5%      9.1%     15.7%    5/6      6.6%    2.83     74m
+
+% = fraction of RTX PRO 6000 peak (KernelBench benchmark.py, geomean over shapes); T = agent hit the 45-min cap
+* geomean over the problems that model passed only; cost = Hermes' OpenRouter estimate (GPT 6.1: subscription)
+
+per-model details:
+  DeepSeek V4.1 Flash fp8    correct         exit=finished practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  DeepSeek V4.1 Flash kda    correct         exit=finished practice=['runtime_error', 'runtime_error', 'correct', 'wrong_output', 'correct', 'correct']  torch_math=[]
+  DeepSeek V4.1 Flash paged  correct         exit=finished practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  DeepSeek V4.1 Flash topk   correct         exit=finished practice=['import_error', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  DeepSeek V4.1 Flash moe    correct         exit=finished practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=['abs', 'add', 'div', 'max', 'mul', 'sub']
+  DeepSeek V4.1 Flash w4a16  correct         exit=finished practice=['correct', 'correct', 'correct', 'wrong_output', 'wrong_output', 'correct']  torch_math=['abs', 'max', 'mul', 'sub']
+  Qwen 3.8 Max        fp8    correct         exit=finished practice=['wrong_output', 'wrong_output', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  Qwen 3.8 Max        kda    correct         exit=timeout  practice=['runtime_error', 'correct', 'correct']  torch_math=[]
+  Qwen 3.8 Max        paged  correct         exit=finished practice=['runtime_error', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  Qwen 3.8 Max        topk   correct         exit=timeout  practice=['runtime_error', 'correct', 'runtime_error', 'correct', 'correct']  torch_math=[]
+  Qwen 3.8 Max        moe    correct         exit=timeout  practice=['correct', 'correct', 'correct', 'runtime_error']  torch_math=['abs', 'any', 'isnan', 'max', 'sub']
+  Qwen 3.8 Max        w4a16  correct         exit=finished practice=['correct', 'runtime_error', 'correct', 'runtime_error', 'correct', 'wrong_output']  torch_math=[]
+  Kimi K3             fp8    correct         exit=finished practice=['correct', 'correct', 'correct', 'correct', 'runtime_error', 'correct']  torch_math=[]
+  Kimi K3             kda    correct         exit=finished practice=['correct', 'correct', 'correct', 'runtime_error', 'runtime_error', 'correct']  torch_math=[]
+  Kimi K3             paged  correct         exit=finished practice=['wrong_output', 'correct', 'wrong_output', 'wrong_output', 'wrong_output', 'correct']  torch_math=[]
+  Kimi K3             topk   correct         exit=finished practice=['forbidden_op', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  Kimi K3             moe    correct         exit=finished practice=['correct', 'wrong_output', 'correct', 'correct', 'correct', 'runtime_error']  torch_math=['add', 'clamp_', 'cumsum', 'floor_divide', 'index', 'mul', 'searchsorted', 'sub']
+  Kimi K3             w4a16  correct         exit=finished practice=['correct', 'correct', 'correct', 'wrong_output', 'wrong_output', 'correct']  torch_math=[]
+  GPT 6.1             fp8    correct         exit=finished practice=['runtime_error', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  GPT 6.1             kda    correct         exit=finished practice=['runtime_error', 'runtime_error', 'correct', 'correct', 'wrong_output', 'correct']  torch_math=[]
+  GPT 6.1             paged  correct         exit=finished practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  GPT 6.1             topk   correct         exit=finished practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  GPT 6.1             moe    correct         exit=finished practice=['correct', 'correct', 'correct', 'correct']  torch_math=[]
+  GPT 6.1             w4a16  correct         exit=finished practice=['runtime_error', 'correct', 'correct', 'correct', 'correct', 'correct']  torch_math=[]
+  GLM 5.3             fp8    runtime_error   exit=finished practice=['runtime_error', 'correct', 'wrong_output', 'wrong_output', 'correct', 'wrong_output']  torch_math=None
+  GLM 5.3             kda    correct         exit=finished practice=['wrong_output', 'correct', 'runtime_error', 'runtime_error', 'correct', 'correct']  torch_math=[]
+  GLM 5.3             paged  correct         exit=finished practice=['correct', 'runtime_error', 'runtime_error', 'correct', 'correct', 'correct']  torch_math=[]
+  GLM 5.3             topk   correct         exit=finished practice=['forbidden_op', 'correct', 'runtime_error', 'correct', 'runtime_error', 'correct']  torch_math=[]
+  GLM 5.3             moe    correct         exit=finished practice=['correct', 'runtime_error', 'wrong_output', 'correct', 'runtime_error', 'correct']  torch_math=['stack']
+  GLM 5.3             w4a16  correct         exit=finished practice=['correct', 'correct', 'runtime_error', 'correct', 'correct']  torch_math=[]

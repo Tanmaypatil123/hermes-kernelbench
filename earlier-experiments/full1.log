@@ -1,0 +1,38 @@
+task folders : /Users/tanmay/kernel_runs/full1
+results file : hermes_results_full1.jsonl
+model        : ~deepseek/deepseek-flash-latest
+
+run=0 vector_add  hidden=correct 1.06x   practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 168s
+run=0 rmsnorm     hidden=correct 3.50x   practice=['correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 336s
+run=0 softmax     hidden=correct 2.76x   practice=['correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 63s
+run=0 swiglu      hidden=correct 1.68x   practice=['correct', 'correct', 'import_error', 'correct'] agent=finished 95s
+run=1 vector_add  hidden=correct 1.00x   practice=['correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 97s
+run=1 rmsnorm     hidden=correct 3.56x   practice=['correct', 'correct', 'compile_error', 'correct', 'correct', 'correct', 'correct'] agent=finished 144s
+run=1 softmax     hidden=correct 1.11x   practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 193s
+run=1 swiglu      hidden=correct 1.68x   practice=['import_error', 'correct', 'correct', 'correct'] agent=finished 149s
+run=2 vector_add  hidden=correct 1.00x   practice=['correct', 'correct', 'correct', 'correct'] agent=finished 73s
+run=2 rmsnorm     hidden=correct 3.55x   practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 136s
+run=2 softmax     hidden=correct 2.76x   practice=['compile_error', 'correct', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 358s
+run=2 swiglu      hidden=correct 1.68x   practice=['correct', 'correct', 'correct', 'compile_error', 'correct'] agent=finished 161s
+
+=== KERNEL EVAL RESULTS ===
+model requested : ~deepseek/deepseek-flash-latest
+model(s) served : ['~deepseek/deepseek-flash-latest']
+gpu             : ['Tesla T4']
+correct (honest)                      : 12/12 = 1.00   95% CI [0.76, 1.00]
+fast_1 (correct & faster than torch)  : 10/12 = 0.83   95% CI [0.55, 0.95]
+correct rate per seed                 : [1.0, 1.0, 1.0]
+geomean speedup (correct only)        : 1.87x
+outcomes                              : {'correct': 12}
+per task (correct / attempts, median speedup):
+   vector_add   3/3   1.00x
+   rmsnorm      3/3   3.55x
+   softmax      3/3   2.76x
+   swiglu       3/3   1.68x
+--- agent behaviour ---
+avg practice runs used                : 5.6 of 8
+never tested before finishing         : 0/12
+passed practice but FAILED hidden     : 0/12  []
+agent exits                           : {'finished': 12}
+avg agent time                        : 164s
+total model cost (Hermes estimate)    : $0.569

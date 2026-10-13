@@ -1,0 +1,59 @@
+{
+  "model": "deepseek/deepseek-v4.1-flash",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "07_w4a16_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.1976,
+  "per_shape": [
+    {
+      "gbps": 518.024,
+      "ms": 0.052
+    },
+    {
+      "gbps": 395.875,
+      "ms": 0.07
+    },
+    {
+      "gbps": 169.259,
+      "ms": 0.208
+    },
+    {
+      "gbps": 317.091,
+      "ms": 0.028
+    },
+    {
+      "gbps": 517.333,
+      "ms": 0.061
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [
+    "abs",
+    "max",
+    "mul",
+    "sub"
+  ],
+  "triton_launches": 951,
+  "agent_exit": "finished",
+  "agent_minutes": 27.2,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "wrong_output",
+    "wrong_output",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 2598151,
+    "output_tokens": 226128,
+    "reasoning_tokens": 162095,
+    "api_calls": 55
+  },
+  "estimated_cost_usd": 0.28600729110000006,
+  "source": "hermes_results_deepseek_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done \u2014 budget exhausted (6/6 practice runs used) and the final `solution.py` passed the graded check.\n\n**One-line summary:** W4A16 fused unpack+dequant GEMM implemented as three Triton kernels in `solution.py` \u2014 a split-K streaming decode kernel (`_w4a16_gemv_split`, masks compiled out for vectorized int4 loads) for M=1, a tensor-core mainloop kernel (`_w4a16_dot`) for M>1, both validated at setup against an independently written reference kernel \u2014 giving `status: correct` (all 5 shapes \u00d7 3 seeds \u00d7 3 stress cases) with peak_fraction 0.204 (geomean, up from 0.132), i.e. 48\u00b5s for M=1/N=12288 (0.31), 27\u00b5s for M=1/N=4096 (0.18), 69\u00b5s/60\u00b5s for M=32/M=16 (0.22/0.29) and 203\u00b5s for M=256 (0.096)."
+}

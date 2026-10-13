@@ -1,0 +1,50 @@
+{
+  "model": "qwen/qwen3.8-max-0902",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "01_fp8_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.3212,
+  "per_shape": [
+    {
+      "gbps": 281.252,
+      "ms": 0.239
+    },
+    {
+      "gbps": 256.031,
+      "ms": 0.263
+    },
+    {
+      "gbps": 799.295,
+      "ms": 0.085
+    },
+    {
+      "gbps": 278.381,
+      "ms": 0.693
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 6373,
+  "agent_exit": "finished",
+  "agent_minutes": 37.5,
+  "practice_history": [
+    "wrong_output",
+    "wrong_output",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 129594,
+    "output_tokens": 73498,
+    "reasoning_tokens": 58374,
+    "api_calls": 40
+  },
+  "estimated_cost_usd": 1.3242080000000003,
+  "source": "hermes_results_qwen_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done. Budget exhausted (6/6 runs used). Final state:\n\nPractice-run history (remote RTX PRO 6000):\n1. wrong_output \u2014 split-K pointer bug (strided loop without pid_z base offset)\n2. wrong_output \u2014 same shape; confirmed root cause by error-signature analysis\n3. correct, peak_fraction 0.247 (576 / 203 / 47 / 680 TFLOPS per shape)\n4. correct, 0.312 \u2014 K=4127 fixed via zero-padding to K%128 (203\u2192516 TFLOPS)\n5. correct, 0.319 \u2014 skinny path fused to one kernel (dropped split-K partials+reduce)\n6. correct, 0.318 \u2014 TMA skinny variant probed (88\u00b5s vs plain 85.6\u00b5s \u2192 pinned plain), x_pad buffer caching kept (shape1 0.518\u21920.527)\n\nThe final solution.py combines the two individually GPU-verified wins from runs 5+6 (plain skinny kernel + cached pad buffers) and compiles clean; no forbidden ops, same Model/get_inputs/get_init_inputs interface and buffers as reference. Per-shape peak fractions: 0.578 / 0.527 / 0.050 / 0.693.\n\nOne-line summary: Real fp8\u00d7fp8 Triton MMA GEMM (fp32 accumulate, per-channel dequant epilogue) scoring ~0.32 geomean peak-fraction \u2014 578/527/693 TFLOPS on the compute-bound shapes via autotuned 128\u00d7256\u00d764 tiles + K-padding for unaligned K, and a single-launch 86\u00b5s memory-bound kernel for the M=32 decode shape."
+}

@@ -1,0 +1,54 @@
+{
+  "model": "gpt-6.1-sol",
+  "served_via": "Codex subscription",
+  "harness": "Hermes Agent, no skills",
+  "problem": "07_w4a16_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.1549,
+  "per_shape": [
+    {
+      "gbps": 393.235,
+      "ms": 0.068
+    },
+    {
+      "gbps": 352.273,
+      "ms": 0.079
+    },
+    {
+      "gbps": 152.399,
+      "ms": 0.23
+    },
+    {
+      "gbps": 190.927,
+      "ms": 0.047
+    },
+    {
+      "gbps": 418.135,
+      "ms": 0.076
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 4.8,
+  "practice_history": [
+    "runtime_error",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 61252,
+    "output_tokens": 3415,
+    "reasoning_tokens": 218,
+    "api_calls": 24
+  },
+  "estimated_cost_usd": null,
+  "source": "hermes_results_gpt61_full.jsonl",
+  "note": null,
+  "agent_final_message": "Implemented fused W4A16 kernels in solution.py; python3 test_kernel.py reports correct (PASS), with all five shapes benchmarked at 0.034\u20130.223 ms; all six practice runs used."
+}

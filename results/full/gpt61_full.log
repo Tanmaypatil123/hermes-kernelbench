@@ -1,0 +1,32 @@
+task folders : /Users/tanmay/kernel_runs/gpt61_full
+results file : hermes_results_gpt61_full.jsonl
+model        : gpt-6.1-sol
+skills       : none
+
+run=0 fp8         hidden=correct 30.3%peak practice=['runtime_error', 'correct', 'correct', 'correct', 'correct'] agent=finished 199s
+run=0 kda         hidden=correct 1.4%peak practice=['runtime_error', 'runtime_error', 'correct', 'correct', 'wrong_output', 'correct'] agent=finished 353s
+run=0 paged       hidden=correct 38.8%peak practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 285s
+run=0 topk        hidden=correct 2.6%peak practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 253s
+run=0 moe         hidden=correct 10.2%peak practice=['correct', 'correct', 'correct', 'correct'] agent=finished 783s
+run=0 w4a16       hidden=correct 15.5%peak practice=['runtime_error', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 289s
+
+=== HARD TIER RESULTS ===
+model requested : gpt-6.1-sol
+model(s) served : ['gpt-6.1-sol']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition']
+pass            : 6/6   95% CI [0.61, 1.00]
+   fp8    correct(30.3% of peak)
+   kda    correct(1.4% of peak)
+   paged  correct(38.8% of peak)
+   topk   correct(2.6% of peak)
+   moe    correct(10.2% of peak)
+   w4a16  correct(15.5% of peak)
+outcomes        : {'correct': 6}
+GPU seconds (hidden grading only): 316
+--- agent behaviour ---
+avg practice runs used                : 5.5 of 6
+never tested before finishing         : 0/6
+passed practice but FAILED hidden     : 0/6  []
+agent exits                           : {'finished': 6}
+avg agent time                        : 360s
+total model cost (Hermes estimate)    : $0.000

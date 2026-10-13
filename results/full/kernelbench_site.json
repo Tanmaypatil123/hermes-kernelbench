@@ -1,0 +1,502 @@
+[
+  {
+    "name": "DeepSeek V4.1 Flash",
+    "id": "deepseek/deepseek-v4.1-flash",
+    "via": "OpenRouter",
+    "slug": "deepseek-v4.1-flash",
+    "passed": 6,
+    "geomean": 9.8,
+    "cost": 0.87,
+    "minutes": 160,
+    "results": {
+      "fp8": {
+        "pass": true,
+        "peak": 29.9,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 11.4,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "kda": {
+        "pass": true,
+        "peak": 1.5,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 28.9,
+        "practice": [
+          "runtime_error",
+          "runtime_error",
+          "correct",
+          "wrong_output",
+          "correct",
+          "correct"
+        ]
+      },
+      "paged": {
+        "pass": true,
+        "peak": 45.1,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 26.1,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "topk": {
+        "pass": true,
+        "peak": 2.2,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 37.9,
+        "practice": [
+          "import_error",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "moe": {
+        "pass": true,
+        "peak": 10.5,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 28.5,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "w4a16": {
+        "pass": true,
+        "peak": 19.8,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 27.2,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "wrong_output",
+          "wrong_output",
+          "correct"
+        ]
+      }
+    }
+  },
+  {
+    "name": "Qwen 3.8 Max",
+    "id": "qwen/qwen3.8-max-0902",
+    "via": "OpenRouter",
+    "slug": "qwen3.8-max",
+    "passed": 6,
+    "geomean": 9.6,
+    "cost": 3.58,
+    "minutes": 244,
+    "results": {
+      "fp8": {
+        "pass": true,
+        "peak": 32.1,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 37.5,
+        "practice": [
+          "wrong_output",
+          "wrong_output",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "kda": {
+        "pass": true,
+        "peak": 1.2,
+        "status": "correct",
+        "timeout": true,
+        "minutes": 45.0,
+        "practice": [
+          "runtime_error",
+          "correct",
+          "correct"
+        ]
+      },
+      "paged": {
+        "pass": true,
+        "peak": 42.4,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 32.6,
+        "practice": [
+          "runtime_error",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "topk": {
+        "pass": true,
+        "peak": 2.7,
+        "status": "correct",
+        "timeout": true,
+        "minutes": 45.0,
+        "practice": [
+          "runtime_error",
+          "correct",
+          "runtime_error",
+          "correct",
+          "correct"
+        ]
+      },
+      "moe": {
+        "pass": true,
+        "peak": 10.3,
+        "status": "correct",
+        "timeout": true,
+        "minutes": 45.0,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "runtime_error"
+        ]
+      },
+      "w4a16": {
+        "pass": true,
+        "peak": 17.7,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 39.1,
+        "practice": [
+          "correct",
+          "runtime_error",
+          "correct",
+          "runtime_error",
+          "correct",
+          "wrong_output"
+        ]
+      }
+    }
+  },
+  {
+    "name": "Kimi K3",
+    "id": "moonshotai/kimi-k3",
+    "via": "OpenRouter",
+    "slug": "kimi-k3",
+    "passed": 6,
+    "geomean": 9.5,
+    "cost": 5.7,
+    "minutes": 80,
+    "results": {
+      "fp8": {
+        "pass": true,
+        "peak": 28.1,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 5.1,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "runtime_error",
+          "correct"
+        ]
+      },
+      "kda": {
+        "pass": true,
+        "peak": 2.4,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 15.9,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "runtime_error",
+          "runtime_error",
+          "correct"
+        ]
+      },
+      "paged": {
+        "pass": true,
+        "peak": 25.8,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 14.9,
+        "practice": [
+          "wrong_output",
+          "correct",
+          "wrong_output",
+          "wrong_output",
+          "wrong_output",
+          "correct"
+        ]
+      },
+      "topk": {
+        "pass": true,
+        "peak": 2.0,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 12.5,
+        "practice": [
+          "forbidden_op",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "moe": {
+        "pass": true,
+        "peak": 9.0,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 23.2,
+        "practice": [
+          "correct",
+          "wrong_output",
+          "correct",
+          "correct",
+          "correct",
+          "runtime_error"
+        ]
+      },
+      "w4a16": {
+        "pass": true,
+        "peak": 23.7,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 8.1,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "wrong_output",
+          "wrong_output",
+          "correct"
+        ]
+      }
+    }
+  },
+  {
+    "name": "GPT 6.1",
+    "id": "gpt-6.1-sol",
+    "via": "Codex subscription",
+    "slug": "gpt-6.1",
+    "passed": 6,
+    "geomean": 9.4,
+    "cost": null,
+    "minutes": 36,
+    "results": {
+      "fp8": {
+        "pass": true,
+        "peak": 30.3,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 3.3,
+        "practice": [
+          "runtime_error",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "kda": {
+        "pass": true,
+        "peak": 1.4,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 5.9,
+        "practice": [
+          "runtime_error",
+          "runtime_error",
+          "correct",
+          "correct",
+          "wrong_output",
+          "correct"
+        ]
+      },
+      "paged": {
+        "pass": true,
+        "peak": 38.8,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 4.7,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "topk": {
+        "pass": true,
+        "peak": 2.6,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 4.2,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "moe": {
+        "pass": true,
+        "peak": 10.2,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 13.1,
+        "practice": [
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "w4a16": {
+        "pass": true,
+        "peak": 15.5,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 4.8,
+        "practice": [
+          "runtime_error",
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      }
+    }
+  },
+  {
+    "name": "GLM 5.3",
+    "id": "z-ai/glm-5.3",
+    "via": "OpenRouter",
+    "slug": "glm-5.3",
+    "passed": 5,
+    "geomean": 6.6,
+    "cost": 2.83,
+    "minutes": 74,
+    "results": {
+      "fp8": {
+        "pass": false,
+        "peak": null,
+        "status": "runtime_error",
+        "timeout": false,
+        "minutes": 6.0,
+        "practice": [
+          "runtime_error",
+          "correct",
+          "wrong_output",
+          "wrong_output",
+          "correct",
+          "wrong_output"
+        ]
+      },
+      "kda": {
+        "pass": true,
+        "peak": 1.5,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 18.0,
+        "practice": [
+          "wrong_output",
+          "correct",
+          "runtime_error",
+          "runtime_error",
+          "correct",
+          "correct"
+        ]
+      },
+      "paged": {
+        "pass": true,
+        "peak": 39.4,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 6.5,
+        "practice": [
+          "correct",
+          "runtime_error",
+          "runtime_error",
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      "topk": {
+        "pass": true,
+        "peak": 1.5,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 20.8,
+        "practice": [
+          "forbidden_op",
+          "correct",
+          "runtime_error",
+          "correct",
+          "runtime_error",
+          "correct"
+        ]
+      },
+      "moe": {
+        "pass": true,
+        "peak": 9.1,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 17.6,
+        "practice": [
+          "correct",
+          "runtime_error",
+          "wrong_output",
+          "correct",
+          "runtime_error",
+          "correct"
+        ]
+      },
+      "w4a16": {
+        "pass": true,
+        "peak": 15.7,
+        "status": "correct",
+        "timeout": false,
+        "minutes": 5.4,
+        "practice": [
+          "correct",
+          "correct",
+          "runtime_error",
+          "correct",
+          "correct"
+        ]
+      }
+    }
+  }
+]

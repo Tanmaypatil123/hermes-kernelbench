@@ -1,0 +1,44 @@
+{
+  "model": "gpt-6.1-sol",
+  "served_via": "Codex subscription",
+  "harness": "Hermes Agent, no skills",
+  "problem": "06_sonic_moe_swiglu",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.1018,
+  "per_shape": [
+    {
+      "gbps": 339.507,
+      "ms": 18.185
+    },
+    {
+      "gbps": 1182.757,
+      "ms": 0.539
+    },
+    {
+      "gbps": 311.496,
+      "ms": 12.065
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 13.1,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 46259,
+    "output_tokens": 2434,
+    "reasoning_tokens": 480,
+    "api_calls": 14
+  },
+  "estimated_cost_usd": null,
+  "source": "hermes_results_gpt61_full.jsonl",
+  "note": null,
+  "agent_final_message": "Implemented solution.py with custom Triton grouped GEMM and fused SwiGLU; test_kernel.py reported status: correct, with timings of 18.171 ms, 0.540 ms, and 12.090 ms across the three shapes."
+}

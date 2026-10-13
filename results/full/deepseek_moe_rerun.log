@@ -1,0 +1,22 @@
+task folders : /Users/tanmay/kernel_runs/deepseek_moe_rerun
+results file : hermes_results_deepseek_moe_rerun.jsonl
+model        : deepseek/deepseek-v4.1-flash
+skills       : none
+
+run=0 moe         hidden=correct 10.5%peak practice=['correct', 'correct', 'correct', 'correct', 'correct', 'correct'] agent=finished 1709s
+
+=== HARD TIER RESULTS ===
+model requested : deepseek/deepseek-v4.1-flash
+model(s) served : ['deepseek/deepseek-v4.1-flash']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition']
+pass            : 1/1   95% CI [0.21, 1.00]
+   moe    correct(10.5% of peak)
+outcomes        : {'correct': 1}
+GPU seconds (hidden grading only): 179
+--- agent behaviour ---
+avg practice runs used                : 6.0 of 6
+never tested before finishing         : 0/1
+passed practice but FAILED hidden     : 0/1  []
+agent exits                           : {'finished': 1}
+avg agent time                        : 1709s
+total model cost (Hermes estimate)    : $0.180

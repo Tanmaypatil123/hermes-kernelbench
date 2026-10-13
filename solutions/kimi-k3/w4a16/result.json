@@ -1,0 +1,54 @@
+{
+  "model": "moonshotai/kimi-k3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "07_w4a16_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.237,
+  "per_shape": [
+    {
+      "gbps": 542.371,
+      "ms": 0.049
+    },
+    {
+      "gbps": 596.6,
+      "ms": 0.047
+    },
+    {
+      "gbps": 208.773,
+      "ms": 0.168
+    },
+    {
+      "gbps": 319.633,
+      "ms": 0.028
+    },
+    {
+      "gbps": 654.335,
+      "ms": 0.049
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 16395,
+  "agent_exit": "finished",
+  "agent_minutes": 8.1,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "wrong_output",
+    "wrong_output",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 126269,
+    "output_tokens": 33150,
+    "reasoning_tokens": 21134,
+    "api_calls": 23
+  },
+  "estimated_cost_usd": 0.8880347699999999,
+  "source": "hermes_results_kimi_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done. Final solution.py: Triton fused W4A16 kernels (split-nibble tl.dot GEMM for M>1, split-K atomic GEMV for M=1, both autotuned per shape) wrapped in pointer-keyed CUDA-graph replay to eliminate per-call launch overhead \u2014 status: correct on all shapes/seeds/stress cases, geomean peak_fraction 0.236 (decode shapes now stream at 540-650 GB/s vs ~260 initially), and the practice-run budget is exhausted."
+}

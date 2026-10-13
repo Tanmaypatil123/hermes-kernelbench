@@ -1,0 +1,50 @@
+{
+  "model": "gpt-6.1-sol",
+  "served_via": "Codex subscription",
+  "harness": "Hermes Agent, no skills",
+  "problem": "02_kda_cutlass",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.014,
+  "per_shape": [
+    {
+      "gbps": 112.55,
+      "ms": 0.224
+    },
+    {
+      "gbps": 122.518,
+      "ms": 0.411
+    },
+    {
+      "gbps": 80.077,
+      "ms": 0.629
+    },
+    {
+      "gbps": 40.639,
+      "ms": 0.31
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 5.9,
+  "practice_history": [
+    "runtime_error",
+    "runtime_error",
+    "correct",
+    "correct",
+    "wrong_output",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 80572,
+    "output_tokens": 4515,
+    "reasoning_tokens": 1586,
+    "api_calls": 26
+  },
+  "estimated_cost_usd": null,
+  "source": "hermes_results_gpt61_full.jsonl",
+  "note": null,
+  "agent_final_message": "Implemented solution.py; all correctness and stress tests pass, with latencies of 0.225, 0.413, 0.629, and 0.309 ms across the four shapes; all six practice runs used."
+}

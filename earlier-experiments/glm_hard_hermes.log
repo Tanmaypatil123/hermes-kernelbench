@@ -1,0 +1,23 @@
+task folders : /Users/tanmay/kernel_runs/glm_hard
+results file : hermes_results_glm_hard.jsonl
+model        : z-ai/glm-5.3-flash
+
+run=0 topk        hidden=correct 0.5%peak practice=['import_error', 'import_error', 'forbidden_op', 'wrong_output'] agent=finished 441s
+run=0 w4a16       hidden=correct 15.7%peak practice=['correct', 'correct', 'correct', 'wrong_output'] agent=finished 247s
+
+=== HARD TIER RESULTS ===
+model requested : z-ai/glm-5.3-flash
+model(s) served : ['z-ai/glm-5.3-flash']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition']
+pass            : 2/2   95% CI [0.34, 1.00]
+   topk   correct(0.5% of peak)
+   w4a16  correct(15.7% of peak)
+outcomes        : {'correct': 2}
+GPU seconds (hidden grading only): 72
+--- agent behaviour ---
+avg practice runs used                : 4.0 of 4
+never tested before finishing         : 0/2
+passed practice but FAILED hidden     : 0/2  []
+agent exits                           : {'finished': 2}
+avg agent time                        : 344s
+total model cost (Hermes estimate)    : $0.109

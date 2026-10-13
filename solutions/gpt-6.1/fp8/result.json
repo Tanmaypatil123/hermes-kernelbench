@@ -1,0 +1,49 @@
+{
+  "model": "gpt-6.1-sol",
+  "served_via": "Codex subscription",
+  "harness": "Hermes Agent, no skills",
+  "problem": "01_fp8_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.3035,
+  "per_shape": [
+    {
+      "gbps": 276.432,
+      "ms": 0.243
+    },
+    {
+      "gbps": 232.093,
+      "ms": 0.29
+    },
+    {
+      "gbps": 760.749,
+      "ms": 0.089
+    },
+    {
+      "gbps": 261.933,
+      "ms": 0.737
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 10,
+  "agent_exit": "finished",
+  "agent_minutes": 3.3,
+  "practice_history": [
+    "runtime_error",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 55423,
+    "output_tokens": 1967,
+    "reasoning_tokens": 183,
+    "api_calls": 15
+  },
+  "estimated_cost_usd": null,
+  "source": "hermes_results_gpt61_full.jsonl",
+  "note": null,
+  "agent_final_message": "Implemented solution.py with FP8 tensor-core GEMM; python3 test_kernel.py reports status: correct and PASS across all checks, with timings of 0.242, 0.292, 0.088, and 0.735 ms for the four shapes."
+}

@@ -1,0 +1,22 @@
+task folders : /Users/tanmay/kernel_runs/glm53_moe_rerun
+results file : hermes_results_glm53_moe_rerun.jsonl
+model        : z-ai/glm-5.3
+skills       : none
+
+run=0 moe         hidden=correct 9.1%peak practice=['correct', 'runtime_error', 'wrong_output', 'correct', 'runtime_error', 'correct'] agent=finished 1056s
+
+=== HARD TIER RESULTS ===
+model requested : z-ai/glm-5.3
+model(s) served : ['z-ai/glm-5.3']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition']
+pass            : 1/1   95% CI [0.21, 1.00]
+   moe    correct(9.1% of peak)
+outcomes        : {'correct': 1}
+GPU seconds (hidden grading only): 213
+--- agent behaviour ---
+avg practice runs used                : 6.0 of 6
+never tested before finishing         : 0/1
+passed practice but FAILED hidden     : 0/1  []
+agent exits                           : {'finished': 1}
+avg agent time                        : 1056s
+total model cost (Hermes estimate)    : $0.299

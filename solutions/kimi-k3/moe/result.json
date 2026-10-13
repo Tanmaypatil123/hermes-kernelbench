@@ -1,0 +1,55 @@
+{
+  "model": "moonshotai/kimi-k3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "06_sonic_moe_swiglu",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.0901,
+  "per_shape": [
+    {
+      "gbps": 319.924,
+      "ms": 19.298
+    },
+    {
+      "gbps": 982.781,
+      "ms": 0.649
+    },
+    {
+      "gbps": 275.818,
+      "ms": 13.625
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [
+    "add",
+    "clamp_",
+    "cumsum",
+    "floor_divide",
+    "index",
+    "mul",
+    "searchsorted",
+    "sub"
+  ],
+  "triton_launches": 276,
+  "agent_exit": "finished",
+  "agent_minutes": 23.2,
+  "practice_history": [
+    "correct",
+    "wrong_output",
+    "correct",
+    "correct",
+    "correct",
+    "runtime_error"
+  ],
+  "tokens": {
+    "input_tokens": 104142,
+    "output_tokens": 31056,
+    "reasoning_tokens": 19729,
+    "api_calls": 24
+  },
+  "estimated_cost_usd": 0.84643646,
+  "source": "hermes_results_kimi_moe_rerun.jsonl",
+  "note": "re-run after the practice-tool fix (curl redirect bug broke long checks in the first run)",
+  "agent_final_message": "Done \u2014 out of practice runs. Final solution.py summary:\n\nA Triton grouped-GEMM MoE up-projection with fused SwiGLU epilogue. Each program handles one (128\u00d7BN) tile of one expert and computes both GEMMs (gate and up) sharing A-tile loads, then applies silu(gate)*up in fp32 before the bf16 store. The variable-length expert schedule (tile\u2192expert, row start, valid rows, total tiles) is built on-GPU with torch tensor ops (searchsorted over cumulative tile counts), so forward() has no host sync and handles ragged/empty experts; L2-swizzled program ordering; a TMA tensor-descriptor kernel is the primary path with automatic fallback to a classic pointer-based kernel if Triton lacks the API (warp-specialization was tried but crashes Triton's MLIR pipeline on sm120, so it's disabled).\n\nVerified remotely: `status: correct` (all 3 shapes, seeds, ragged stress cases PASS), benchmark ~19.7 ms / 0.65 ms / 13.8 ms on the three shapes (~42/53/40 tflops by the harness's metric, peak_fraction 0.089 \u2014 graded LOW, but correct and the fastest of my iterations)."
+}

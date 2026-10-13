@@ -1,0 +1,50 @@
+{
+  "model": "moonshotai/kimi-k3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "01_fp8_gemm",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.2808,
+  "per_shape": [
+    {
+      "gbps": 252.882,
+      "ms": 0.265
+    },
+    {
+      "gbps": 193.083,
+      "ms": 0.349
+    },
+    {
+      "gbps": 793.021,
+      "ms": 0.086
+    },
+    {
+      "gbps": 241.898,
+      "ms": 0.798
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 6,
+  "agent_exit": "finished",
+  "agent_minutes": 5.1,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "runtime_error",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 123780,
+    "output_tokens": 5623,
+    "reasoning_tokens": 1919,
+    "api_calls": 17
+  },
+  "estimated_cost_usd": 0.26176380000000005,
+  "source": "hermes_results_kimi_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done, Tanmay. Final solution.py: a Triton fp8_e4m3\u00d7fp8_e4m3 GEMM (tl.dot with fp32 accumulate, per-channel dequant scale applied in-kernel, bf16 output) with 128\u00d7128\u00d7128 tiles for large shapes, a small-M config for the decode shape, and K-padding to 128 for the misaligned K=4127 case. Verified `status: correct` on all 4 shapes/stress cases; benchmark: 518 / 398 / 50 / 602 TFLOPS, peak_fraction 0.28 \u2014 out of practice runs."
+}

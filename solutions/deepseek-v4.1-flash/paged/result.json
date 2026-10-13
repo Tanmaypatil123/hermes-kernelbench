@@ -1,0 +1,54 @@
+{
+  "model": "deepseek/deepseek-v4.1-flash",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "03_paged_attention",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.4508,
+  "per_shape": [
+    {
+      "gbps": 736.907,
+      "ms": 0.046
+    },
+    {
+      "gbps": 1088.166,
+      "ms": 0.247
+    },
+    {
+      "gbps": 852.606,
+      "ms": 0.079
+    },
+    {
+      "gbps": 959.328,
+      "ms": 0.105
+    },
+    {
+      "gbps": 536.075,
+      "ms": 0.031
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 12,
+  "agent_exit": "finished",
+  "agent_minutes": 26.1,
+  "practice_history": [
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 506439,
+    "output_tokens": 159112,
+    "reasoning_tokens": 135260,
+    "api_calls": 58
+  },
+  "estimated_cost_usd": 0.08268724178399997,
+  "source": "hermes_results_deepseek_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done. `solution.py` is a custom Triton paged-attention decode kernel (no vLLM/FlashInfer/SDPA): a two-stage split-K flash decode where each stage-1 program owns one KV head of one batch element and *all* its GQA query heads, so every K/V byte is read from DRAM once; pages are gathered in-kernel from `block_table` with predicated tails, scores use a bf16\u00d7bf16 tensor-core `tl.dot` (fp32 accumulate) and P@V uses fp16 weights, and identical back-to-back calls are replayed from an address-keyed CUDA graph to amortise launch overhead on the small shapes.\n\nVerified end-to-end with `python3 test_kernel.py` on the remote RTX PRO 6000: **status: correct** on all 5 shapes \u00d7 3 seeds \u00d7 all numeric-stress cases plus the mismatch-detecting property-stress suite, with **peak_fraction 0.4472** (best of my 6 practice runs; iterated 0.3548 \u2192 0.4366 \u2192 0.4413 \u2192 0.4472), the remaining gap being a ~1.1 TB/s streaming roofline for this token-major `(block, page, kv_head, K|V)` layout plus ~16 \u00b5s of unavoidable launch/replay latency."
+}

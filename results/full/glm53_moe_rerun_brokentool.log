@@ -1,0 +1,5 @@
+task folders : /Users/tanmay/kernel_runs/glm53_moe_rerun
+results file : hermes_results_glm53_moe_rerun.jsonl
+model        : z-ai/glm-5.3
+skills       : none
+

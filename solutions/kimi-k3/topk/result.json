@@ -1,0 +1,54 @@
+{
+  "model": "moonshotai/kimi-k3",
+  "served_via": "OpenRouter",
+  "harness": "Hermes Agent, no skills",
+  "problem": "05_topk_bitonic",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "status": "correct",
+  "peak_fraction": 0.0196,
+  "per_shape": [
+    {
+      "gbps": 12.592,
+      "ms": 0.042
+    },
+    {
+      "gbps": 54.751,
+      "ms": 0.038
+    },
+    {
+      "gbps": 50.148,
+      "ms": 0.042
+    },
+    {
+      "gbps": 27.429,
+      "ms": 0.028
+    },
+    {
+      "gbps": 57.732,
+      "ms": 0.036
+    }
+  ],
+  "detail": null,
+  "torch_math_ops_at_runtime": [],
+  "triton_launches": 0,
+  "agent_exit": "finished",
+  "agent_minutes": 12.5,
+  "practice_history": [
+    "forbidden_op",
+    "correct",
+    "correct",
+    "correct",
+    "correct",
+    "correct"
+  ],
+  "tokens": {
+    "input_tokens": 111829,
+    "output_tokens": 38847,
+    "reasoning_tokens": 22710,
+    "api_calls": 20
+  },
+  "estimated_cost_usd": 0.88961877,
+  "source": "hermes_results_kimi_full.jsonl",
+  "note": null,
+  "agent_final_message": "Done \u2014 out of practice runs. Final solution.py passes correctness on all 5 shapes (`status: correct`, check.py PASS every run).\n\nSummary: solution.py implements a fused single-launch CUDA top-k kernel (via load_inline): each block bitonic-sorts 128-element chunks warp-locally (float4-vectorized loads when n%4==0, scalar fallback otherwise), keeps a running top-64 per warp via bitonic merge, tree-merges warp lists in shared memory (race-free load\u2192sync\u2192store), writes a 64-entry candidate list per slice, and the last block per row (atomic counter with self-reset) tree-merges slice lists and emits the top-k. Verified correct across all shapes/seeds; benchmark floor on the remote rig is ~27\u00b5s per call regardless of design (kernel-only work is a few \u00b5s), with peak_fraction ~0.02 (best measured config kept; CUDA-graph and two-kernel variants tested and discarded as slower)."
+}

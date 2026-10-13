@@ -1,0 +1,32 @@
+task folders : /Users/tanmay/kernel_runs/glm53_full
+results file : hermes_results_glm53_full.jsonl
+model        : z-ai/glm-5.3
+skills       : none
+
+run=0 fp8         hidden=runtime_error         practice=['runtime_error', 'correct', 'wrong_output', 'wrong_output', 'correct', 'wrong_output'] agent=finished 361s
+run=0 kda         hidden=correct 1.5%peak practice=['wrong_output', 'correct', 'runtime_error', 'runtime_error', 'correct', 'correct'] agent=finished 1081s
+run=0 paged       hidden=correct 39.4%peak practice=['correct', 'infra_error', 'runtime_error', 'runtime_error', 'correct', 'correct', 'infra_error', 'correct'] agent=finished 387s
+run=0 topk        hidden=correct 1.5%peak practice=['forbidden_op', 'correct', 'runtime_error', 'correct', 'runtime_error', 'correct'] agent=finished 1248s
+run=0 moe         hidden=correct 8.5%peak practice=['forbidden_op', 'infra_error', 'infra_error', 'infra_error', 'infra_error', 'infra_error', 'infra_error', 'infra_error', 'correct', 'infra_error'] agent=timeout 2700s
+run=0 w4a16       hidden=correct 15.7%peak practice=['correct', 'correct', 'infra_error', 'runtime_error', 'correct', 'correct'] agent=finished 326s
+
+=== HARD TIER RESULTS ===
+model requested : z-ai/glm-5.3
+model(s) served : ['z-ai/glm-5.3']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition']
+pass            : 5/6   95% CI [0.44, 0.97]
+   fp8    runtime_error
+   kda    correct(1.5% of peak)
+   paged  correct(39.4% of peak)
+   topk   correct(1.5% of peak)
+   moe    correct(8.5% of peak)
+   w4a16  correct(15.7% of peak)
+outcomes        : {'runtime_error': 1, 'correct': 5}
+GPU seconds (hidden grading only): 330
+--- agent behaviour ---
+avg practice runs used                : 7.0 of 6
+never tested before finishing         : 0/6
+passed practice but FAILED hidden     : 0/6  []
+agent exits                           : {'finished': 5, 'timeout': 1}
+avg agent time                        : 1017s
+total model cost (Hermes estimate)    : $2.531

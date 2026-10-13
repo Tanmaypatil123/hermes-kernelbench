@@ -1,0 +1,12 @@
+seed=0 topk   empty_response(finish=length)  
+seed=0 w4a16  empty_response(finish=length)  
+
+=== HARD TIER RESULTS ===
+model requested : moonshotai/kimi-k3
+model(s) served : ['moonshotai/kimi-k3']
+gpu             : ['None']
+pass            : 0/2   95% CI [0.00, 0.66]
+   topk   empty_response(finish=length)
+   w4a16  empty_response(finish=length)
+outcomes        : {'empty_response(finish=length)': 2}
+GPU seconds (hidden grading only): 0

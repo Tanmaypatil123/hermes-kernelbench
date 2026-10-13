@@ -1,0 +1,12 @@
+seed=0 topk   empty_response(finish=length)  
+seed=0 w4a16  correct 7.3% of peak  
+
+=== HARD TIER RESULTS ===
+model requested : deepseek/deepseek-v4.1-flash
+model(s) served : ['deepseek/deepseek-v4.1-flash']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition', 'None']
+pass            : 1/2   95% CI [0.09, 0.91]
+   topk   empty_response(finish=length)
+   w4a16  correct(7.3% of peak)
+outcomes        : {'empty_response(finish=length)': 1, 'correct': 1}
+GPU seconds (hidden grading only): 31

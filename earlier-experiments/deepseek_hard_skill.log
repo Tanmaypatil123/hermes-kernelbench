@@ -1,0 +1,24 @@
+task folders : /Users/tanmay/kernel_runs/deepseek_hard_skill
+results file : hermes_results_deepseek_hard_skill.jsonl
+model        : deepseek/deepseek-v4.1-flash
+skills       : gpu-kernel-optimization
+
+run=0 topk        hidden=correct 1.5%peak practice=['forbidden_op', 'runtime_error', 'runtime_error', 'correct'] agent=finished 970s
+run=0 w4a16       hidden=correct 13.8%peak practice=['runtime_error', 'correct', 'correct', 'runtime_error'] agent=finished 622s
+
+=== HARD TIER RESULTS ===
+model requested : deepseek/deepseek-v4.1-flash
+model(s) served : ['deepseek/deepseek-v4.1-flash']
+gpu             : ['NVIDIA RTX PRO 6000 Blackwell Server Edition']
+pass            : 2/2   95% CI [0.34, 1.00]
+   topk   correct(1.5% of peak)
+   w4a16  correct(13.8% of peak)
+outcomes        : {'correct': 2}
+GPU seconds (hidden grading only): 53
+--- agent behaviour ---
+avg practice runs used                : 4.0 of 4
+never tested before finishing         : 0/2
+passed practice but FAILED hidden     : 0/2  []
+agent exits                           : {'finished': 2}
+avg agent time                        : 796s
+total model cost (Hermes estimate)    : $0.237
