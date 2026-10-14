@@ -1,0 +1,1802 @@
+[
+ {
+  "model": "DeepSeek V4.1 Flash",
+  "slug": "deepseek-v4.1-flash",
+  "task": "fp8",
+  "final": {
+   "status": "correct",
+   "peak": 29.95,
+   "ms": [
+    0.253,
+    0.287,
+    0.094,
+    0.713
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 23.77,
+    "geo_ms": 0.3331,
+    "minute": 2.7,
+    "label": "fp8 tensor-core GEMM, fp32 accumulate"
+   },
+   {
+    "status": "correct",
+    "peak": 24.25,
+    "geo_ms": 0.3265,
+    "minute": 4.8,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 30.49,
+    "geo_ms": 0.2597,
+    "minute": 6.5,
+    "label": "zero-pad odd K=4127 so loads vectorize"
+   },
+   {
+    "status": "correct",
+    "peak": 26.68,
+    "geo_ms": 0.2968,
+    "minute": 7.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 31.96,
+    "geo_ms": 0.2478,
+    "minute": 9.7,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 29.69,
+    "geo_ms": 0.2667,
+    "minute": 11.2,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "DeepSeek V4.1 Flash",
+  "slug": "deepseek-v4.1-flash",
+  "task": "kda",
+  "final": {
+   "status": "correct",
+   "peak": 1.47,
+   "ms": [
+    0.287,
+    0.422,
+    0.51,
+    0.237
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 11.0,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 11.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 0.88,
+    "geo_ms": 0.5809,
+    "minute": 12.7,
+    "label": "chunked KDA, doubling-trick inverse"
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 16.3,
+    "label": null
+   },
+   {
+    "status": "infra_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 20.2,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.43,
+    "geo_ms": 0.3575,
+    "minute": 21.0,
+    "label": "split sequential state pass from parallel output pass"
+   },
+   {
+    "status": "correct",
+    "peak": 1.47,
+    "geo_ms": 0.3478,
+    "minute": 28.6,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "DeepSeek V4.1 Flash",
+  "slug": "deepseek-v4.1-flash",
+  "task": "paged",
+  "final": {
+   "status": "correct",
+   "peak": 45.08,
+   "ms": [
+    0.046,
+    0.247,
+    0.079,
+    0.105,
+    0.031
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 35.48,
+    "geo_ms": 0.099,
+    "minute": 8.1,
+    "label": "split-K flash-decode, one program per GQA group"
+   },
+   {
+    "status": "correct",
+    "peak": 43.66,
+    "geo_ms": 0.0804,
+    "minute": 11.0,
+    "label": "CUDA-graph replay to hide launch cost"
+   },
+   {
+    "status": "correct",
+    "peak": 43.94,
+    "geo_ms": 0.0799,
+    "minute": 12.5,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 44.13,
+    "geo_ms": 0.0796,
+    "minute": 17.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 43.27,
+    "geo_ms": 0.0812,
+    "minute": 22.5,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 44.72,
+    "geo_ms": 0.0785,
+    "minute": 25.8,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "DeepSeek V4.1 Flash",
+  "slug": "deepseek-v4.1-flash",
+  "task": "topk",
+  "final": {
+   "status": "correct",
+   "peak": 2.17,
+   "ms": [
+    0.079,
+    0.038,
+    0.043,
+    0.023,
+    0.014
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "import_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 14.5,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.4,
+    "geo_ms": 0.0519,
+    "minute": 16.3,
+    "label": "CUDA bitonic merge-tree top-k"
+   },
+   {
+    "status": "correct",
+    "peak": 1.57,
+    "geo_ms": 0.0463,
+    "minute": 22.2,
+    "label": "template on M: keep list in registers"
+   },
+   {
+    "status": "correct",
+    "peak": 1.6,
+    "geo_ms": 0.0454,
+    "minute": 26.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 2.22,
+    "geo_ms": 0.0327,
+    "minute": 31.8,
+    "label": "division-free in-place merge tree"
+   },
+   {
+    "status": "correct",
+    "peak": 2.11,
+    "geo_ms": 0.0344,
+    "minute": 36.3,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "DeepSeek V4.1 Flash",
+  "slug": "deepseek-v4.1-flash",
+  "task": "moe",
+  "final": {
+   "status": "correct",
+   "peak": 10.48,
+   "ms": [
+    17.364,
+    0.526,
+    11.862
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 9.76,
+    "geo_ms": 5.1186,
+    "minute": 8.3,
+    "label": "grouped GEMM + fused SwiGLU, on-device schedule"
+   },
+   {
+    "status": "correct",
+    "peak": 9.82,
+    "geo_ms": 5.0874,
+    "minute": 12.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 10.52,
+    "geo_ms": 4.7489,
+    "minute": 17.1,
+    "label": "TMA loads, kept only if output matches"
+   },
+   {
+    "status": "correct",
+    "peak": 10.49,
+    "geo_ms": 4.7624,
+    "minute": 20.5,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 10.13,
+    "geo_ms": 4.9317,
+    "minute": 24.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 10.48,
+    "geo_ms": 4.767,
+    "minute": 28.4,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "DeepSeek V4.1 Flash",
+  "slug": "deepseek-v4.1-flash",
+  "task": "w4a16",
+  "final": {
+   "status": "correct",
+   "peak": 19.76,
+   "ms": [
+    0.052,
+    0.07,
+    0.208,
+    0.028,
+    0.061
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 13.23,
+    "geo_ms": 0.0994,
+    "minute": 8.1,
+    "label": "fused int4 unpack + dequant + GEMM"
+   },
+   {
+    "status": "correct",
+    "peak": 10.36,
+    "geo_ms": 0.1269,
+    "minute": 11.2,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 12.68,
+    "geo_ms": 0.1037,
+    "minute": 15.4,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 17.7,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 20.3,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 20.37,
+    "geo_ms": 0.0645,
+    "minute": 26.2,
+    "label": "split-K decode + CUDA graph, self-validated"
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Qwen 3.8 Max",
+  "slug": "qwen3.8-max",
+  "task": "fp8",
+  "final": {
+   "status": "correct",
+   "peak": 32.12,
+   "ms": [
+    0.239,
+    0.263,
+    0.085,
+    0.693
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 8.1,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 9.6,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 24.71,
+    "geo_ms": 0.3204,
+    "minute": 20.6,
+    "label": "fp8 GEMM + split-K path for skinny M"
+   },
+   {
+    "status": "correct",
+    "peak": 31.16,
+    "geo_ms": 0.2541,
+    "minute": 25.1,
+    "label": "zero-pad odd K, retune split-K"
+   },
+   {
+    "status": "correct",
+    "peak": 31.89,
+    "geo_ms": 0.2483,
+    "minute": 29.6,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 31.84,
+    "geo_ms": 0.2487,
+    "minute": 35.8,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Qwen 3.8 Max",
+  "slug": "qwen3.8-max",
+  "task": "kda",
+  "final": {
+   "status": "correct",
+   "peak": 1.2,
+   "ms": [
+    0.328,
+    0.548,
+    0.645,
+    0.281
+   ],
+   "timeout": true
+  },
+  "attempts": [
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 34.7,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 0.28,
+    "geo_ms": 1.8258,
+    "minute": 36.0,
+    "label": "3-kernel chunked KDA, fp32 inverse"
+   },
+   {
+    "status": "correct",
+    "peak": 1.2,
+    "geo_ms": 0.426,
+    "minute": 41.4,
+    "label": "self-profiling + pipelined loads"
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Qwen 3.8 Max",
+  "slug": "qwen3.8-max",
+  "task": "paged",
+  "final": {
+   "status": "correct",
+   "peak": 42.45,
+   "ms": [
+    0.047,
+    0.264,
+    0.086,
+    0.114,
+    0.032
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 8.7,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 37.12,
+    "geo_ms": 0.0946,
+    "minute": 9.6,
+    "label": "split-KV flash-decode on tensor cores"
+   },
+   {
+    "status": "correct",
+    "peak": 39.46,
+    "geo_ms": 0.089,
+    "minute": 18.6,
+    "label": "fuse merge into one kernel (last-CTA) + CUDA graph"
+   },
+   {
+    "status": "correct",
+    "peak": 40.08,
+    "geo_ms": 0.0876,
+    "minute": 22.4,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 42.86,
+    "geo_ms": 0.0819,
+    "minute": 26.9,
+    "label": "num_stages 4 -> 3"
+   },
+   {
+    "status": "correct",
+    "peak": 40.74,
+    "geo_ms": 0.0862,
+    "minute": 31.7,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Qwen 3.8 Max",
+  "slug": "qwen3.8-max",
+  "task": "topk",
+  "final": {
+   "status": "correct",
+   "peak": 2.71,
+   "ms": [
+    0.055,
+    0.019,
+    0.039,
+    0.022,
+    0.016
+   ],
+   "timeout": true
+  },
+  "attempts": [
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 14.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.47,
+    "geo_ms": 0.0494,
+    "minute": 15.7,
+    "label": "packed-key bitonic sort per segment"
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 20.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.48,
+    "geo_ms": 0.0491,
+    "minute": 22.7,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 2.75,
+    "geo_ms": 0.0264,
+    "minute": 43.3,
+    "label": "max-extraction instead of full sort, cached launcher"
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Qwen 3.8 Max",
+  "slug": "qwen3.8-max",
+  "task": "moe",
+  "final": {
+   "status": "correct",
+   "peak": 10.27,
+   "ms": [
+    18.012,
+    0.533,
+    11.975
+   ],
+   "timeout": true
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 9.37,
+    "geo_ms": 5.3317,
+    "minute": 14.0,
+    "label": "grouped GEMM + fused SwiGLU, device tile map"
+   },
+   {
+    "status": "correct",
+    "peak": 9.39,
+    "geo_ms": 5.3203,
+    "minute": 24.4,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 9.29,
+    "geo_ms": 5.3776,
+    "minute": 34.1,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 40.1,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 10.2,
+    "geo_ms": 4.8978,
+    "minute": 46.8,
+    "label": "wider verified tile sweep"
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Qwen 3.8 Max",
+  "slug": "qwen3.8-max",
+  "task": "w4a16",
+  "final": {
+   "status": "correct",
+   "peak": 17.67,
+   "ms": [
+    0.061,
+    0.071,
+    0.212,
+    0.036,
+    0.068
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 14.8,
+    "geo_ms": 0.0888,
+    "minute": 7.8,
+    "label": "fused int4 dequant GEMM + split-K"
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 14.4,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 15.44,
+    "geo_ms": 0.0851,
+    "minute": 15.7,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 24.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 17.55,
+    "geo_ms": 0.0749,
+    "minute": 25.3,
+    "label": "int32-word loads (16B vectorized) + split-K reduce"
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 34.6,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Kimi K3",
+  "slug": "kimi-k3",
+  "task": "fp8",
+  "final": {
+   "status": "correct",
+   "peak": 28.08,
+   "ms": [
+    0.265,
+    0.349,
+    0.086,
+    0.798
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 16.09,
+    "geo_ms": 0.4921,
+    "minute": 1.3,
+    "label": "fp8 tensor-core GEMM"
+   },
+   {
+    "status": "correct",
+    "peak": 28.07,
+    "geo_ms": 0.2821,
+    "minute": 2.6,
+    "label": "zero-pad odd K + wider K tiles"
+   },
+   {
+    "status": "correct",
+    "peak": 27.43,
+    "geo_ms": 0.2887,
+    "minute": 3.1,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 28.22,
+    "geo_ms": 0.2806,
+    "minute": 4.2,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 4.6,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 28.11,
+    "geo_ms": 0.2817,
+    "minute": 5.0,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Kimi K3",
+  "slug": "kimi-k3",
+  "task": "kda",
+  "final": {
+   "status": "correct",
+   "peak": 2.36,
+   "ms": [
+    0.153,
+    0.289,
+    0.341,
+    0.145
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 1.42,
+    "geo_ms": 0.36,
+    "minute": 5.8,
+    "label": "3-stage chunked KDA"
+   },
+   {
+    "status": "correct",
+    "peak": 1.66,
+    "geo_ms": 0.308,
+    "minute": 9.8,
+    "label": "blocked triangular inverse"
+   },
+   {
+    "status": "correct",
+    "peak": 2.13,
+    "geo_ms": 0.24,
+    "minute": 12.0,
+    "label": "doubling inverse, cached buffers, double-buffered loads"
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 14.3,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 14.8,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 2.32,
+    "geo_ms": 0.2204,
+    "minute": 15.7,
+    "label": "CUDA-graph replay"
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Kimi K3",
+  "slug": "kimi-k3",
+  "task": "paged",
+  "final": {
+   "status": "correct",
+   "peak": 25.75,
+   "ms": [
+    0.094,
+    0.316,
+    0.167,
+    0.162,
+    0.059
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 2.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 25.38,
+    "geo_ms": 0.1384,
+    "minute": 2.6,
+    "label": "split-KV decode, NaN-safe merge"
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 5.4,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 6.4,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 10.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 25.79,
+    "geo_ms": 0.1362,
+    "minute": 14.7,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Kimi K3",
+  "slug": "kimi-k3",
+  "task": "topk",
+  "final": {
+   "status": "correct",
+   "peak": 1.96,
+   "ms": [
+    0.042,
+    0.038,
+    0.042,
+    0.028,
+    0.036
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "forbidden_op",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 3.4,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.24,
+    "geo_ms": 0.0586,
+    "minute": 3.7,
+    "label": "CUDA warp bitonic sort + tree merge"
+   },
+   {
+    "status": "correct",
+    "peak": 1.88,
+    "geo_ms": 0.0386,
+    "minute": 6.1,
+    "label": "one fused kernel, last-block merge"
+   },
+   {
+    "status": "correct",
+    "peak": 2.21,
+    "geo_ms": 0.0329,
+    "minute": 9.1,
+    "label": "float4 loads, more slices"
+   },
+   {
+    "status": "correct",
+    "peak": 1.75,
+    "geo_ms": 0.0415,
+    "minute": 10.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.97,
+    "geo_ms": 0.0369,
+    "minute": 12.3,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Kimi K3",
+  "slug": "kimi-k3",
+  "task": "moe",
+  "final": {
+   "status": "correct",
+   "peak": 9.01,
+   "ms": [
+    19.298,
+    0.649,
+    13.625
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 8.59,
+    "geo_ms": 5.8158,
+    "minute": 3.4,
+    "label": "grouped GEMM + fused SwiGLU, sync-free schedule"
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 5.2,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 8.41,
+    "geo_ms": 5.9403,
+    "minute": 10.5,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 8.28,
+    "geo_ms": 6.0336,
+    "minute": 15.2,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 8.9,
+    "geo_ms": 5.6133,
+    "minute": 20.1,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 22.8,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "Kimi K3",
+  "slug": "kimi-k3",
+  "task": "w4a16",
+  "final": {
+   "status": "correct",
+   "peak": 23.7,
+   "ms": [
+    0.049,
+    0.047,
+    0.168,
+    0.028,
+    0.049
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 10.33,
+    "geo_ms": 0.1272,
+    "minute": 1.6,
+    "label": "GEMV for decode + tl.dot GEMM"
+   },
+   {
+    "status": "correct",
+    "peak": 14.92,
+    "geo_ms": 0.0881,
+    "minute": 2.3,
+    "label": "split-K, wider tiles"
+   },
+   {
+    "status": "correct",
+    "peak": 14.36,
+    "geo_ms": 0.0915,
+    "minute": 3.8,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 6.0,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 7.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 23.61,
+    "geo_ms": 0.0557,
+    "minute": 8.0,
+    "label": "autotuned split-K GEMV + CUDA graph"
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GPT 6.1",
+  "slug": "gpt-6.1",
+  "task": "fp8",
+  "final": {
+   "status": "correct",
+   "peak": 30.35,
+   "ms": [
+    0.243,
+    0.29,
+    0.089,
+    0.737
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 1.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 21.61,
+    "geo_ms": 0.3664,
+    "minute": 1.5,
+    "label": "fp8 tl.dot GEMM with split-K"
+   },
+   {
+    "status": "correct",
+    "peak": 29.27,
+    "geo_ms": 0.2705,
+    "minute": 2.2,
+    "label": "pad odd K with a Triton copy kernel"
+   },
+   {
+    "status": "correct",
+    "peak": 30.45,
+    "geo_ms": 0.26,
+    "minute": 2.7,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 30.44,
+    "geo_ms": 0.2601,
+    "minute": 3.2,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GPT 6.1",
+  "slug": "gpt-6.1",
+  "task": "kda",
+  "final": {
+   "status": "correct",
+   "peak": 1.4,
+   "ms": [
+    0.224,
+    0.411,
+    0.629,
+    0.31
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 2.1,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 2.7,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 0.48,
+    "geo_ms": 1.065,
+    "minute": 3.4,
+    "label": "chunked KDA, tf32x3 nilpotent solve"
+   },
+   {
+    "status": "correct",
+    "peak": 1.39,
+    "geo_ms": 0.3678,
+    "minute": 4.2,
+    "label": "tf32x3 -> tf32 dots (3x fewer MMAs)"
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 5.2,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.39,
+    "geo_ms": 0.3678,
+    "minute": 5.7,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GPT 6.1",
+  "slug": "gpt-6.1",
+  "task": "paged",
+  "final": {
+   "status": "correct",
+   "peak": 38.84,
+   "ms": [
+    0.057,
+    0.262,
+    0.086,
+    0.117,
+    0.04
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 31.17,
+    "geo_ms": 0.1127,
+    "minute": 1.2,
+    "label": "split-K decode, one program per head"
+   },
+   {
+    "status": "correct",
+    "peak": 38.71,
+    "geo_ms": 0.0907,
+    "minute": 2.2,
+    "label": "one program per KV head, tl.dot over GQA group"
+   },
+   {
+    "status": "correct",
+    "peak": 37.81,
+    "geo_ms": 0.0929,
+    "minute": 2.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 38.41,
+    "geo_ms": 0.0914,
+    "minute": 3.4,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 38.34,
+    "geo_ms": 0.0916,
+    "minute": 4.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 38.38,
+    "geo_ms": 0.0915,
+    "minute": 4.6,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GPT 6.1",
+  "slug": "gpt-6.1",
+  "task": "topk",
+  "final": {
+   "status": "correct",
+   "peak": 2.57,
+   "ms": [
+    0.041,
+    0.029,
+    0.029,
+    0.029,
+    0.018
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 1.62,
+    "geo_ms": 0.0448,
+    "minute": 1.3,
+    "label": "packed-key sort per chunk + merge"
+   },
+   {
+    "status": "correct",
+    "peak": 2.38,
+    "geo_ms": 0.0305,
+    "minute": 2.0,
+    "label": "tl.topk instead of full sort"
+   },
+   {
+    "status": "correct",
+    "peak": 2.6,
+    "geo_ms": 0.0279,
+    "minute": 2.4,
+    "label": "chunk size tuned per batch"
+   },
+   {
+    "status": "correct",
+    "peak": 2.64,
+    "geo_ms": 0.0275,
+    "minute": 2.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.95,
+    "geo_ms": 0.0372,
+    "minute": 3.7,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 2.66,
+    "geo_ms": 0.0273,
+    "minute": 4.1,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GPT 6.1",
+  "slug": "gpt-6.1",
+  "task": "moe",
+  "final": {
+   "status": "correct",
+   "peak": 10.18,
+   "ms": [
+    18.185,
+    0.539,
+    12.065
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 5.96,
+    "geo_ms": 8.3822,
+    "minute": 3.7,
+    "label": "grouped GEMM, binary-search expert lookup"
+   },
+   {
+    "status": "correct",
+    "peak": 9.54,
+    "geo_ms": 5.2367,
+    "minute": 6.9,
+    "label": "grouped tile order for L2 reuse"
+   },
+   {
+    "status": "correct",
+    "peak": 7.49,
+    "geo_ms": 6.67,
+    "minute": 9.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 10.16,
+    "geo_ms": 4.9171,
+    "minute": 12.9,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GPT 6.1",
+  "slug": "gpt-6.1",
+  "task": "w4a16",
+  "final": {
+   "status": "correct",
+   "peak": 15.49,
+   "ms": [
+    0.068,
+    0.079,
+    0.23,
+    0.047,
+    0.076
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 1.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 8.15,
+    "geo_ms": 0.1613,
+    "minute": 1.5,
+    "label": "split-K decode + tiled GEMM"
+   },
+   {
+    "status": "correct",
+    "peak": 16.96,
+    "geo_ms": 0.0775,
+    "minute": 2.3,
+    "label": "one scale/zero load per group, smaller N tiles"
+   },
+   {
+    "status": "correct",
+    "peak": 17.8,
+    "geo_ms": 0.0738,
+    "minute": 3.2,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 17.34,
+    "geo_ms": 0.0758,
+    "minute": 4.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 17.88,
+    "geo_ms": 0.0735,
+    "minute": 4.7,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GLM 5.3",
+  "slug": "glm-5.3",
+  "task": "fp8",
+  "final": {
+   "status": "runtime_error",
+   "peak": null,
+   "ms": [],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 0.5,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 13.52,
+    "geo_ms": 0.5857,
+    "minute": 0.9,
+    "label": "fp8 tensor-core GEMM"
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 1.9,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 2.2,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 11.58,
+    "geo_ms": 0.6838,
+    "minute": 5.1,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 5.7,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GLM 5.3",
+  "slug": "glm-5.3",
+  "task": "kda",
+  "final": {
+   "status": "correct",
+   "peak": 1.53,
+   "ms": [
+    0.265,
+    0.395,
+    0.502,
+    0.239
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 8.2,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.29,
+    "geo_ms": 0.3963,
+    "minute": 11.6,
+    "label": "chunked KDA, fp32-ieee inverse"
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 14.6,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 15.3,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.55,
+    "geo_ms": 0.3298,
+    "minute": 16.4,
+    "label": "fused w/z dots + safe fallback kernel"
+   },
+   {
+    "status": "correct",
+    "peak": 0.78,
+    "geo_ms": 0.6554,
+    "minute": 17.6,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GLM 5.3",
+  "slug": "glm-5.3",
+  "task": "paged",
+  "final": {
+   "status": "correct",
+   "peak": 39.37,
+   "ms": [
+    0.056,
+    0.261,
+    0.088,
+    0.116,
+    0.037
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 38.84,
+    "geo_ms": 0.0904,
+    "minute": 1.3,
+    "label": "split-K flash-decode for each GQA group"
+   },
+   {
+    "status": "infra_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 2.2,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 2.4,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 2.7,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 39.3,
+    "geo_ms": 0.0894,
+    "minute": 3.4,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 39.41,
+    "geo_ms": 0.0891,
+    "minute": 4.4,
+    "label": null
+   },
+   {
+    "status": "infra_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 5.8,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 39.07,
+    "geo_ms": 0.0899,
+    "minute": 6.3,
+    "label": null
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GLM 5.3",
+  "slug": "glm-5.3",
+  "task": "topk",
+  "final": {
+   "status": "correct",
+   "peak": 1.49,
+   "ms": [
+    0.093,
+    0.04,
+    0.059,
+    0.045,
+    0.028
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "forbidden_op",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 5.8,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 0.55,
+    "geo_ms": 0.132,
+    "minute": 6.5,
+    "label": "radix-select in Triton"
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 13.9,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.15,
+    "geo_ms": 0.0631,
+    "minute": 14.9,
+    "label": "fix branch shapes (helper fn)"
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 19.8,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 1.48,
+    "geo_ms": 0.0491,
+    "minute": 20.6,
+    "label": "sampled pivots + atomic gather"
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GLM 5.3",
+  "slug": "glm-5.3",
+  "task": "moe",
+  "final": {
+   "status": "correct",
+   "peak": 9.09,
+   "ms": [
+    20.585,
+    0.587,
+    13.731
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 8.49,
+    "geo_ms": 5.8843,
+    "minute": 3.3,
+    "label": "grouped GEMM + fused SwiGLU"
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 4.9,
+    "label": null
+   },
+   {
+    "status": "wrong_output",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 7.0,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 7.64,
+    "geo_ms": 6.539,
+    "minute": 11.0,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 14.4,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 9.1,
+    "geo_ms": 5.4899,
+    "minute": 17.5,
+    "label": "gate/up interleaved: one dot, one accumulator"
+   }
+  ],
+  "story": null
+ },
+ {
+  "model": "GLM 5.3",
+  "slug": "glm-5.3",
+  "task": "w4a16",
+  "final": {
+   "status": "correct",
+   "peak": 15.67,
+   "ms": [
+    0.066,
+    0.081,
+    0.245,
+    0.042,
+    0.076
+   ],
+   "timeout": false
+  },
+  "attempts": [
+   {
+    "status": "correct",
+    "peak": 14.01,
+    "geo_ms": 0.0938,
+    "minute": 1.6,
+    "label": "fused int4 dequant GEMM"
+   },
+   {
+    "status": "correct",
+    "peak": 9.39,
+    "geo_ms": 0.14,
+    "minute": 2.8,
+    "label": null
+   },
+   {
+    "status": "infra_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 3.9,
+    "label": null
+   },
+   {
+    "status": "runtime_error",
+    "peak": null,
+    "geo_ms": null,
+    "minute": 4.1,
+    "label": null
+   },
+   {
+    "status": "correct",
+    "peak": 15.08,
+    "geo_ms": 0.0872,
+    "minute": 4.6,
+    "label": "tile-contiguous weight repack"
+   },
+   {
+    "status": "correct",
+    "peak": 15.95,
+    "geo_ms": 0.0824,
+    "minute": 5.3,
+    "label": "fused split-K reduce + cast"
+   }
+  ],
+  "story": null
+ }
+]

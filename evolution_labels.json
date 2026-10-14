@@ -1,0 +1,38 @@
+{
+ "_about": "What changed at each practice run that set a new best (>5% over the previous best), read from the agent's own edits to solution.py and its notes in the Hermes session log. Keys are attempt numbers (1-based). Steps where the edit was not captured in the log are left unlabelled.",
+
+ "deepseek-v4.1-flash/fp8": {"1": "fp8 tensor-core GEMM, fp32 accumulate", "3": "zero-pad odd K=4127 so loads vectorize"},
+ "deepseek-v4.1-flash/kda": {"3": "chunked KDA, doubling-trick inverse", "6": "split sequential state pass from parallel output pass"},
+ "deepseek-v4.1-flash/paged": {"1": "split-K flash-decode, one program per GQA group", "2": "CUDA-graph replay to hide launch cost"},
+ "deepseek-v4.1-flash/topk": {"2": "CUDA bitonic merge-tree top-k", "3": "template on M: keep list in registers", "5": "division-free in-place merge tree"},
+ "deepseek-v4.1-flash/moe": {"1": "grouped GEMM + fused SwiGLU, on-device schedule", "3": "TMA loads, kept only if output matches"},
+ "deepseek-v4.1-flash/w4a16": {"1": "fused int4 unpack + dequant + GEMM", "6": "split-K decode + CUDA graph, self-validated"},
+
+ "qwen3.8-max/fp8": {"3": "fp8 GEMM + split-K path for skinny M", "4": "zero-pad odd K, retune split-K"},
+ "qwen3.8-max/kda": {"2": "3-kernel chunked KDA, fp32 inverse", "3": "self-profiling + pipelined loads"},
+ "qwen3.8-max/paged": {"2": "split-KV flash-decode on tensor cores", "3": "fuse merge into one kernel (last-CTA) + CUDA graph", "5": "num_stages 4 -> 3"},
+ "qwen3.8-max/topk": {"2": "packed-key bitonic sort per segment", "5": "max-extraction instead of full sort, cached launcher"},
+ "qwen3.8-max/moe": {"1": "grouped GEMM + fused SwiGLU, device tile map", "5": "wider verified tile sweep"},
+ "qwen3.8-max/w4a16": {"1": "fused int4 dequant GEMM + split-K", "5": "int32-word loads (16B vectorized) + split-K reduce"},
+
+ "kimi-k3/fp8": {"1": "fp8 tensor-core GEMM", "2": "zero-pad odd K + wider K tiles"},
+ "kimi-k3/kda": {"1": "3-stage chunked KDA", "2": "blocked triangular inverse", "3": "doubling inverse, cached buffers, double-buffered loads", "6": "CUDA-graph replay"},
+ "kimi-k3/paged": {"2": "split-KV decode, NaN-safe merge"},
+ "kimi-k3/topk": {"2": "CUDA warp bitonic sort + tree merge", "3": "one fused kernel, last-block merge", "4": "float4 loads, more slices"},
+ "kimi-k3/moe": {"1": "grouped GEMM + fused SwiGLU, sync-free schedule"},
+ "kimi-k3/w4a16": {"1": "GEMV for decode + tl.dot GEMM", "2": "split-K, wider tiles", "6": "autotuned split-K GEMV + CUDA graph"},
+
+ "gpt-6.1/fp8": {"2": "fp8 tl.dot GEMM with split-K", "3": "pad odd K with a Triton copy kernel"},
+ "gpt-6.1/kda": {"3": "chunked KDA, tf32x3 nilpotent solve", "4": "tf32x3 -> tf32 dots (3x fewer MMAs)"},
+ "gpt-6.1/paged": {"1": "split-K decode, one program per head", "2": "one program per KV head, tl.dot over GQA group"},
+ "gpt-6.1/topk": {"1": "packed-key sort per chunk + merge", "2": "tl.topk instead of full sort", "3": "chunk size tuned per batch"},
+ "gpt-6.1/moe": {"1": "grouped GEMM, binary-search expert lookup", "2": "grouped tile order for L2 reuse"},
+ "gpt-6.1/w4a16": {"2": "split-K decode + tiled GEMM", "3": "one scale/zero load per group, smaller N tiles"},
+
+ "glm-5.3/fp8": {"2": "fp8 tensor-core GEMM"},
+ "glm-5.3/kda": {"2": "chunked KDA, fp32-ieee inverse", "5": "fused w/z dots + safe fallback kernel"},
+ "glm-5.3/paged": {"1": "split-K flash-decode for each GQA group"},
+ "glm-5.3/topk": {"2": "radix-select in Triton", "4": "fix branch shapes (helper fn)", "6": "sampled pivots + atomic gather"},
+ "glm-5.3/moe": {"1": "grouped GEMM + fused SwiGLU", "6": "gate/up interleaved: one dot, one accumulator"},
+ "glm-5.3/w4a16": {"1": "fused int4 dequant GEMM", "5": "tile-contiguous weight repack", "6": "fused split-K reduce + cast"}
+}
